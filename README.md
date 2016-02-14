@@ -170,7 +170,7 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 NextInputs内置的所有校验模式都自带提示消息，这些提示消息描述也比较“抽象”，很可能不符合你的业务需要。使用 `.msgOnFail(String)` 接口或者 `.msg(String)` 接口可以设置校验失败提示消息。当校验失败时，提示消息将通过MessageDisplay接口的具体实现类处理并显示出来。
 
-这两个接口的作用是相同的，如果你觉得`.msg(String)`会导致你突然忘记这方法是干哈的，你可以使用`.msgOnFail(String)`方法来提醒自己。
+这两个接口的作用是相同的，如果你觉得`.msg(String)`会导致你突然忘记这方法是干哈的，你可以使用`.msgOnFail(String)`方法来提醒自己。
 
 使用 `NextInputs.setMessageDisplay(MessageDisplay)` 方法可以覆盖默认实现，使用你想要的校验失败提示方式。
 
@@ -185,3 +185,19 @@ NextInputs对输入数据空值字符串的定义是：
 ```
 input == null || input.length() == 0
 ```
+
+# License
+
+    Copyright 2015 Yoojia Chen
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.

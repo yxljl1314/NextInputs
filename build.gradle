@@ -1,12 +1,57 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
 group 'com.github.yoojia'
-version '1.0-SNAPSHOT'
+version '1.0-Beta'
 
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 
 repositories {
+    jcenter()
     mavenCentral()
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'com.github.yoojia'
+            artifactId 'next-inputs'
+            version '1.0-Beta'
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = 'NextInputs'
+        userOrg = 'yoojia'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/yoojia/NextInputs.git'
+        labels = ['Java', 'Text Input', 'Validation']
+        publicDownloadNumbers = true
+        version {
+            name = '1.0-Beta'
+            desc = 'NextInputs library 1.0 beta'
+            vcsTag = '1.0-beta'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
 }
 
 dependencies {

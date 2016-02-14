@@ -4,14 +4,14 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
-# 特性
+# NextInputs 特点
 
-- 轻量级，自然快;
-- 使用简单;
-- 内置大量常用校验模式;
-- 支持自定义校验模式扩展;
-- 支持自定义校验目标扩展;
-- 支持自定义错误消息提示;
+* 轻量级，纯JDK实现，无第三方依赖；
+* 小巧，Jar文件仅38K;
+* 内置大量常用校验模式;
+* 支持自定义校验模式扩展;
+* 支持自定义校验目标扩展;
+* 支持自定义错误消息提示;
 
 **NextInputs** 内建了两种校验模式分类：`静态校验模式`、`数值校验模式`。
 使用NextInputs能够极大地提升开发效率，内置的多个校验模式已能应付开发常用的校验需求，如有特殊校验需求，通过扩展接口也能快速解决。
@@ -35,11 +35,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.0-Beta`：
+当前最新版本为 `1.0-beta`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.0-Beta'
+    compile 'com.github.yoojia:next-inputs:1.0-beta'
 }
 ```
 

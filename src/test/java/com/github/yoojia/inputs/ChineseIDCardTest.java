@@ -21,6 +21,7 @@ public class ChineseIDCardTest {
 
     @Test
     public void testPassed() throws Exception {
+        Assert.assertTrue(mTester.performTest(""));
         Assert.assertTrue(mTester.performTest("440901197709194316"));
         Assert.assertTrue(mTester.performTest("440901197502198379"));
         Assert.assertTrue(mTester.performTest("44090119840325427X"));
@@ -30,6 +31,8 @@ public class ChineseIDCardTest {
 
     @Test
     public void testFail() throws Exception {
+        Assert.assertFalse(mTester.performTest("abc"));
+        Assert.assertFalse(mTester.performTest("1234"));
         Assert.assertFalse(mTester.performTest("+440901197709194316"));
         Assert.assertFalse(mTester.performTest("H440901197502198379"));
         Assert.assertFalse(mTester.performTest("A44090119840325427X"));

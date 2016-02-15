@@ -18,7 +18,7 @@ public class NextInputs {
         }
     };
 
-    private final ArrayList<TestMeta> mRules = new ArrayList<>();
+    private final ArrayList<TestMeta> mTestMetaArray = new ArrayList<>();
 
     private MessageDisplay mMessageDisplay = new MessageDisplay() {
         @Override
@@ -27,22 +27,28 @@ public class NextInputs {
         }
     };
 
-    private boolean mStopOnFail = true;
+    /**
+     * 默认情况下，校验测试失败即停止其它校验
+     */
+    private boolean mStopIfFail = true;
 
     /**
      * 执行校验测试，并返回测试结果。
      * @return 校验测试结果是否成功
      */
     public boolean test(){
+        TestMeta testing = null;
         try{
-            for (TestMeta rule : mRules) {
-                if ( ! performTest(rule) && mStopOnFail) {
+            for (TestMeta meta : mTestMetaArray) {
+                testing = meta;
+                if ( ! performTest(meta) && mStopIfFail) {
                     return false;
                 }
             }
             return true;
-        }catch (Exception err) {
-            throw new RuntimeException(err);
+        }catch (Throwable thr) {
+            mMessageDisplay.show(testing.input, thr.getMessage());
+            return false;
         }
     }
 
@@ -57,7 +63,7 @@ public class NextInputs {
             throw new IllegalArgumentException("Patterns is required !");
         }
         Arrays.sort(patterns, ORDERING);
-        mRules.add(new TestMeta(input, patterns));
+        mTestMetaArray.add(new TestMeta(input, patterns));
         return this;
     }
 
@@ -65,8 +71,8 @@ public class NextInputs {
      * 在校验测试遇到失败时，是否停止校验
      * @param stopOnFail 是否停止
      */
-    public void setStopOnFail(boolean stopOnFail){
-        mStopOnFail = stopOnFail;
+    public void setStopIfFail(boolean stopOnFail){
+        mStopIfFail = stopOnFail;
     }
 
     /**

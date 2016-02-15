@@ -59,7 +59,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Integer input, Integer valueA, Integer valueB) {
+            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
                 return input >= valueA;
             }
         }).msgOnFail("输入数值大小必须不小于：" + minValue);
@@ -78,7 +78,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Long input, Long valueA, Long valueB) {
+            protected boolean performTest(Long input, Long valueA, Long valueB) {
                 return input >= valueA;
             }
         }).msgOnFail("输入数值大小必须不小于：" + minValue);
@@ -97,7 +97,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Float input, Float valueA, Float valueB) {
+            protected boolean performTest(Float input, Float valueA, Float valueB) {
                 return input >= valueA;
             }
         }).msgOnFail("输入数值大小必须不小于：" + minValue);
@@ -116,7 +116,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Double input, Double valueA, Double valueB) {
+            protected boolean performTest(Double input, Double valueA, Double valueB) {
                 return input >= valueA;
             }
         }).msgOnFail("输入数值大小必须不小于：" + minValue);
@@ -135,7 +135,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Integer input, Integer valueA, Integer valueB) {
+            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
                 return input <= valueA;
             }
         }).msgOnFail("输入数值大小必须不大于：" + maxValue);
@@ -154,7 +154,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Long input, Long valueA, Long valueB) {
+            protected boolean performTest(Long input, Long valueA, Long valueB) {
                 return input <= valueA;
             }
         }).msgOnFail("输入数值大小必须不大于：" + maxValue);
@@ -173,7 +173,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Float input, Float valueA, Float valueB) {
+            protected boolean performTest(Float input, Float valueA, Float valueB) {
                 return input <= valueA;
             }
         }).msgOnFail("输入数值大小必须不大于：" + maxValue);
@@ -192,7 +192,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Double input, Double valueA, Double valueB) {
+            protected boolean performTest(Double input, Double valueA, Double valueB) {
                 return input <= valueA;
             }
         }).msgOnFail("输入数值大小必须不大于：" + maxValue);
@@ -216,7 +216,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Integer input, Integer valueA, Integer valueB) {
+            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
                 return valueA <= input && input <= valueB;
             }
         }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
@@ -240,7 +240,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Long input, Long valueA, Long valueB) {
+            protected boolean performTest(Long input, Long valueA, Long valueB) {
                 return valueA <= input && input <= valueB;
             }
         }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
@@ -264,7 +264,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Float input, Float valueA, Float valueB) {
+            protected boolean performTest(Float input, Float valueA, Float valueB) {
                 return valueA <= input && input <= valueB;
             }
         }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
@@ -288,7 +288,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(Double input, Double valueA, Double valueB) {
+            protected boolean performTest(Double input, Double valueA, Double valueB) {
                 return valueA <= input && input <= valueB;
             }
         }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
@@ -307,7 +307,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(String input, String valueA, String valueB) {
+            protected boolean performTest(String input, String valueA, String valueB) {
                 return input.equals(valueA);
             }
         }).msgOnFail("输入内容与要求不一致");
@@ -335,7 +335,7 @@ public class ValuesPattern {
             }
 
             @Override
-            protected boolean onTest(String input, String valueA, String valueB) {
+            protected boolean performTest(String input, String valueA, String valueB) {
                 return !input.equals(valueA);
             }
         }).msgOnFail("输入内容不能与要求的相同");
@@ -350,12 +350,12 @@ public class ValuesPattern {
         });
     }
 
-    public static <T> Pattern ABTest(final ABTestBridge<T> abTester) {
+    public static <T> Pattern ABTest(final ABTestBridge<T> bridge) {
         return new Pattern(new AllowEmptyTester() {
             @Override
             public boolean performTestNotEmpty(String input) throws Exception {
-                final T value = abTester.stringToValue(input);
-                return abTester.onTest(value, abTester.onValueA(), abTester.onValueB());
+                final T value = bridge.stringToValue(input);
+                return bridge.performTest(value, bridge.onValueA(), bridge.onValueB());
             }
         }).priority(PRIORITY_GENERAL);
     }

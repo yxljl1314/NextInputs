@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -11,39 +11,39 @@ public class TestOrderTest {
     @Test
     public void testOrder(){
         final NextInputs inputs = new NextInputs();
-        final StringBuilder ordered = new StringBuilder();
-        inputs.add(new Input() {
-            @Override
-            public String onLoadValue() {
-                return "hahaha";
-            }
-        }, new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                ordered.append("0");
-                return true;
-            }
-        }), new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                ordered.append("1");
-                return true;
-            }
-        }), new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                ordered.append("2");
-                return true;
-            }
-        }), new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                ordered.append("3");
-                return true;
-            }
-        }).priority(StaticPattern.PRIORITY_REQUIRED));
+        final StringBuilder orderedBuff = new StringBuilder();
+        inputs.add(
+                new Input() {
+                    @Override public String onLoadValue() {
+                        return "hahaha";
+                    }
+                },
+                new Pattern(new OrderedTester(orderedBuff, "0")),
+                new Pattern(new OrderedTester(orderedBuff, "1")),
+                new Pattern(new OrderedTester(orderedBuff, "2")),
+                new Pattern(new OrderedTester(orderedBuff, "3")).priority(StaticPattern.PRIORITY_REQUIRED),
+                new Pattern(new OrderedTester(orderedBuff, "4")).priority(Integer.MAX_VALUE),
+                new Pattern(new OrderedTester(orderedBuff, "5")).priority(Integer.MIN_VALUE)
+        );
 
         Assert.assertTrue(inputs.test());
-        Assert.assertEquals("3012", ordered.toString());
+        Assert.assertEquals("530124", orderedBuff.toString());
+    }
+
+    private static class OrderedTester implements AbstractTester {
+
+        private final StringBuilder mBuff;
+        private final String mTag;
+
+        private OrderedTester(StringBuilder mBuff, String mTag) {
+            this.mBuff = mBuff;
+            this.mTag = mTag;
+        }
+
+        @Override
+        public boolean performTest(String rawInput) throws Exception {
+            mBuff.append(mTag);
+            return true;
+        }
     }
 }

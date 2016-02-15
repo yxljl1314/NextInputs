@@ -1,8 +1,9 @@
 package com.github.yoojia.inputs;
 
 /**
- * AllowEmptyTester
- * @author 陈小锅 (yoojia.chen@gmail.com)
+ * Tester
+ * @author 陈小锅 (yoojiachen@gmail.com)
+ * @since 1.0
  */
 public interface AbstractTester {
 

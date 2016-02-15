@@ -9,13 +9,14 @@ plugins {
 }
 
 group 'com.github.yoojia'
-version '1.0-beta'
+version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     jcenter()
@@ -24,19 +25,38 @@ repositories {
 
 publishing {
     publications {
-        MyPublication(MavenPublication) {
+        MavenJava(MavenPublication) {
             from components.java
             groupId 'com.github.yoojia'
             artifactId 'next-inputs'
-            version '1.0-beta'
+            version '1.0'
+
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
+}
+
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
 }
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    publications = ['MyPublication']
+    publications = ['MavenJava']
     pkg {
         repo = 'maven'
         name = 'NextInputs'
@@ -46,9 +66,9 @@ bintray {
         labels = ['Java', 'Text Input', 'Validation']
         publicDownloadNumbers = true
         version {
-            name = '1.0-beta'
-            desc = 'NextInputs library 1.0 beta'
-            vcsTag = '1.0-beta'
+            name = '1.0'
+            desc = 'NextInputs library 1.0'
+            vcsTag = '1.0'
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }

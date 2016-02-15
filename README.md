@@ -4,6 +4,8 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
+----
+
 # NextInputs 特点
 
 * 轻量级，纯JDK实现，无第三方依赖；
@@ -16,6 +18,8 @@ NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.c
 **NextInputs** 内建了两种校验模式分类：`静态校验模式`、`数值校验模式`。
 使用NextInputs能够极大地提升开发效率，内置的多个校验模式已能应付开发常用的校验需求，如有特殊校验需求，通过扩展接口也能快速解决。
 
+----
+
 # 使用示例
 
 ```java
@@ -27,6 +31,8 @@ inputs.add(Inputs.editText(mUsernameEditText),
 boolean passed = inputs.test();
 ```
 
+----
+
 # 配置 Gradle 依赖
 
 ```groovy
@@ -35,13 +41,15 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.0-beta`：
+当前最新版本为 `1.0`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.0-beta'
+    compile 'com.github.yoojia:next-inputs:1.0'
 }
 ```
+
+----
 
 # StaticPattern - 静态校验模式
 
@@ -123,9 +131,22 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 `StaticPattern.IsFalse()`，输入内容必须是False值。通常用于校验RadioBotton或者CheckBox等。
 
+----
+
 # ValuesPattern - 数值校验模式
 
-数值校验模式需要指定校验参数来完成校验。
+`数值校验模式`需要指定校验参数来完成校验。
+NextInputs目前内置包含以下几种数值校验模式，在未来版本也会加入其它使用频率较高的模式：
+
+- Required - 必填模式，与静态校验模式的必填模式相同。
+- MinLength - 最小内容长度
+- MaxLength - 最多内容长度
+- RangeLength - 内容长度在指定范围内
+- MinValue - 最小值
+- MaxValue - 最大值
+- RangeValue - 数值范围
+- EqualsTo - 与指定内容相同
+- NotEqualsTo - 与指定内容不相同
 
 ## Required -  必填项目
 
@@ -166,6 +187,8 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 方式与`ValuesPattern.EqualsTo`相同，判断方式取反。
 
+----
+
 # 设置校验失败提示消息
 
 NextInputs内置的所有校验模式都自带提示消息，这些提示消息描述也比较“抽象”，很可能不符合你的业务需要。使用 `.msgOnFail(String)` 接口或者 `.msg(String)` 接口可以设置校验失败提示消息。当校验失败时，提示消息将通过MessageDisplay接口的具体实现类处理并显示出来。
@@ -174,9 +197,13 @@ NextInputs内置的所有校验模式都自带提示消息，这些提示消息�
 
 使用 `NextInputs.setMessageDisplay(MessageDisplay)` 方法可以覆盖默认实现，使用你想要的校验失败提示方式。
 
+----
+
 # 自定义校验优先级
 
 NextInputs是通过 `Pattern.priority` 的数值来决定优先级的，按数值升序。在非常有必要的情况下，可以使用 `Pattern.setPriority(int)` 方法来自定义校验模式的优先级。不建议自定义优先级，使用代码顺序即可。
+
+----
 
 # 空值
 
@@ -185,6 +212,8 @@ NextInputs对输入数据空值字符串的定义是：
 ```
 input == null || input.length() == 0
 ```
+
+----
 
 # License
 

@@ -220,6 +220,19 @@ QQ群: 66186035
 
 ----
 
+# Change Log
+
+### 1.1
+
+- 更新各个校验模式的内部实现,分离其Tester；
+- ValuesPattern.EqualsTo() 修改为 ValuesPattern.Equals()；
+- ValuesPattern.NotEqualsTo() 修改为 ValuesPattern.NotEquals()；
+- ABTestBridge 更改为 ABBridge；
+- AllowEmptyTester 更改为 EmptyableTester；
+- Loader 及 ABBridge 的onValue方法修改为 getValueX 的形式；
+
+----
+
 # License
 
     Copyright 2015 Yoojia Chen

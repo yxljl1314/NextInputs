@@ -30,7 +30,7 @@ public class TestOrderTest {
         Assert.assertEquals("530124", orderedBuff.toString());
     }
 
-    private static class OrderedTester implements AbstractTester {
+    private static class OrderedTester implements Tester {
 
         private final StringBuilder mBuff;
         private final String mTag;

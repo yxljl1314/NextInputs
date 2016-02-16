@@ -1,13 +1,13 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableTester;
 
 /**
- * Numeric tester
- * !!! NOTE THAT: Impl comes from ApacheCommonUtils
- * @author 陈小锅 (yoojia.chen@gmail.com)
+ * 数字校验器
+ * @author Yoojia Chen (yoojia.chen@gmail.com)
+ * @since 1.0
  */
-public class NumericTester extends AllowEmptyTester {
+public class NumericTester extends EmptyableTester {
 
     @Override
     public boolean performTestNotEmpty(String input) throws Exception {

@@ -1,12 +1,12 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableTester;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MaxLengthTester extends AllowEmptyTester {
+public class MaxLengthTester extends EmptyableTester {
 
     private final int mLength;
 

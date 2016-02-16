@@ -14,7 +14,7 @@ public class NextInputs {
     private static final Comparator<Pattern> ORDERING = new Comparator<Pattern>() {
         @Override
         public int compare(Pattern lhs, Pattern rhs) {
-            return lhs.priority - rhs.priority;
+            return lhs.orderPriority - rhs.orderPriority;
         }
     };
 

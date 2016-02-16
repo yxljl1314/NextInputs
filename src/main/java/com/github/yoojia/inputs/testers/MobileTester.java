@@ -1,14 +1,15 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableTester;
 
-import static com.github.yoojia.inputs.testers.Texts.regexMatch;
+import static com.github.yoojia.inputs.Texts.regexMatch;
 
 /**
- * @author YOOJIA CHEN (yoojiachen@gmail.com)
+ * 中国11位手机号校验器
+ * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MobileTester extends AllowEmptyTester{
+public class MobileTester extends EmptyableTester {
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
         return regexMatch(notEmptyInput, "^(\\+?\\d{2}-?)?(1[0-9])\\d{9}$");

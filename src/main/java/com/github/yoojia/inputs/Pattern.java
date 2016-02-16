@@ -1,17 +1,28 @@
 package com.github.yoojia.inputs;
 
 /**
- * Test rule Wrapper
- *
+ * 校验模式
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 public class Pattern {
 
+    /**
+     * 当验证失败时的提示消息
+     */
     String message;
-    int priority = StaticPattern.PRIORITY_GENERAL;
-    final AbstractTester tester;
 
-    public Pattern(AbstractTester tester) {
+    /**
+     * 验证顺序优先级.默认为 StaticPattern.PRIORITY_GENERAL
+     * @see StaticPattern
+     */
+    int orderPriority = StaticPattern.PRIORITY_GENERAL;
+
+    /**
+     * 具体校验算法实现接口
+     */
+    final Tester tester;
+
+    public Pattern(Tester tester) {
         this.tester = tester;
     }
 
@@ -20,7 +31,7 @@ public class Pattern {
     }
 
     public Pattern priority(int priority){
-        this.priority = priority;
+        this.orderPriority = priority;
         return this;
     }
 

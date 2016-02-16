@@ -1,14 +1,15 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableTester;
 
-import static com.github.yoojia.inputs.testers.Texts.regexMatch;
+import static com.github.yoojia.inputs.Texts.regexMatch;
 
 /**
- * @author YOOJIA CHEN (yoojiachen@gmail.com)
+ * IP(v4)地址校验器
+ * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class IPv4Tester extends AllowEmptyTester{
+public class IPv4Tester extends EmptyableTester {
 
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {

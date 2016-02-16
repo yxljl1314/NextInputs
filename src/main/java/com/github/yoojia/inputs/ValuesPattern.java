@@ -28,14 +28,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MinValue(final int minValue) {
-        return ABTest(new ABTestBridge<Integer>() {
+        return ABTest(new ABBridge<Integer>() {
             @Override
-            protected Integer onValueA() {
+            protected Integer getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Integer stringToValue(String input) {
+            protected Integer stringToTyped(String input) {
                 return Integer.valueOf(input);
             }
 
@@ -47,14 +47,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MinValue(final long minValue) {
-        return ABTest(new ABTestBridge<Long>() {
+        return ABTest(new ABBridge<Long>() {
             @Override
-            protected Long onValueA() {
+            protected Long getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Long stringToValue(String input) {
+            protected Long stringToTyped(String input) {
                 return Long.valueOf(input);
             }
 
@@ -66,14 +66,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MinValue(final float minValue) {
-        return ABTest(new ABTestBridge<Float>() {
+        return ABTest(new ABBridge<Float>() {
             @Override
-            protected Float onValueA() {
+            protected Float getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Float stringToValue(String input) {
+            protected Float stringToTyped(String input) {
                 return Float.valueOf(input);
             }
 
@@ -85,14 +85,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MinValue(final double minValue) {
-        return ABTest(new ABTestBridge<Double>() {
+        return ABTest(new ABBridge<Double>() {
             @Override
-            protected Double onValueA() {
+            protected Double getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Double stringToValue(String input) {
+            protected Double stringToTyped(String input) {
                 return Double.valueOf(input);
             }
 
@@ -104,14 +104,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MaxValue(final int maxValue) {
-        return ABTest(new ABTestBridge<Integer>() {
+        return ABTest(new ABBridge<Integer>() {
             @Override
-            protected Integer onValueA() {
+            protected Integer getValueA() {
                 return maxValue;
             }
 
             @Override
-            protected Integer stringToValue(String input) {
+            protected Integer stringToTyped(String input) {
                 return Integer.valueOf(input);
             }
 
@@ -123,14 +123,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MaxValue(final long maxValue) {
-        return ABTest(new ABTestBridge<Long>() {
+        return ABTest(new ABBridge<Long>() {
             @Override
-            protected Long onValueA() {
+            protected Long getValueA() {
                 return maxValue;
             }
 
             @Override
-            protected Long stringToValue(String input) {
+            protected Long stringToTyped(String input) {
                 return Long.valueOf(input);
             }
 
@@ -142,14 +142,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MaxValue(final float maxValue) {
-        return ABTest(new ABTestBridge<Float>() {
+        return ABTest(new ABBridge<Float>() {
             @Override
-            protected Float onValueA() {
+            protected Float getValueA() {
                 return maxValue;
             }
 
             @Override
-            protected Float stringToValue(String input) {
+            protected Float stringToTyped(String input) {
                 return Float.valueOf(input);
             }
 
@@ -161,14 +161,14 @@ public class ValuesPattern {
     }
 
     public static Pattern MaxValue(final double maxValue) {
-        return ABTest(new ABTestBridge<Double>() {
+        return ABTest(new ABBridge<Double>() {
             @Override
-            protected Double onValueA() {
+            protected Double getValueA() {
                 return maxValue;
             }
 
             @Override
-            protected Double stringToValue(String input) {
+            protected Double stringToTyped(String input) {
                 return Double.valueOf(input);
             }
 
@@ -180,19 +180,19 @@ public class ValuesPattern {
     }
 
     public static Pattern RangeValue(final int minValue, final int maxValue) {
-        return ABTest(new ABTestBridge<Integer>() {
+        return ABTest(new ABBridge<Integer>() {
             @Override
-            protected Integer onValueA() {
+            protected Integer getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Integer onValueB() {
+            protected Integer getValueB() {
                 return maxValue;
             }
 
             @Override
-            protected Integer stringToValue(String input) {
+            protected Integer stringToTyped(String input) {
                 return Integer.valueOf(input);
             }
 
@@ -204,19 +204,19 @@ public class ValuesPattern {
     }
 
     public static Pattern RangeValue(final long minValue, final long maxValue) {
-        return ABTest(new ABTestBridge<Long>() {
+        return ABTest(new ABBridge<Long>() {
             @Override
-            protected Long onValueA() {
+            protected Long getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Long onValueB() {
+            protected Long getValueB() {
                 return maxValue;
             }
 
             @Override
-            protected Long stringToValue(String input) {
+            protected Long stringToTyped(String input) {
                 return Long.valueOf(input);
             }
 
@@ -228,19 +228,19 @@ public class ValuesPattern {
     }
 
     public static Pattern RangeValue(final float minValue, final float maxValue) {
-        return ABTest(new ABTestBridge<Float>() {
+        return ABTest(new ABBridge<Float>() {
             @Override
-            protected Float onValueA() {
+            protected Float getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Float onValueB() {
+            protected Float getValueB() {
                 return maxValue;
             }
 
             @Override
-            protected Float stringToValue(String input) {
+            protected Float stringToTyped(String input) {
                 return Float.valueOf(input);
             }
 
@@ -252,19 +252,19 @@ public class ValuesPattern {
     }
 
     public static Pattern RangeValue(final double minValue, final double maxValue) {
-        return ABTest(new ABTestBridge<Double>() {
+        return ABTest(new ABBridge<Double>() {
             @Override
-            protected Double onValueA() {
+            protected Double getValueA() {
                 return minValue;
             }
 
             @Override
-            protected Double onValueB() {
+            protected Double getValueB() {
                 return maxValue;
             }
 
             @Override
-            protected Double stringToValue(String input) {
+            protected Double stringToTyped(String input) {
                 return Double.valueOf(input);
             }
 
@@ -276,14 +276,14 @@ public class ValuesPattern {
     }
 
     public static Pattern EqualsTo(final Loader<String> loader){
-        return ABTest(new ABTestBridge<String>() {
+        return ABTest(new ABBridge<String>() {
             @Override
-            protected String onValueA() {
+            protected String getValueA() {
                 return loader.onLoadValue();
             }
 
             @Override
-            protected String stringToValue(String input) {
+            protected String stringToTyped(String input) {
                 return input;
             }
 
@@ -304,14 +304,14 @@ public class ValuesPattern {
     }
 
     public static Pattern NotEqualsTo(final Loader<String> loader){
-        return ABTest(new ABTestBridge<String>() {
+        return ABTest(new ABBridge<String>() {
             @Override
-            protected String onValueA() {
+            protected String getValueA() {
                 return loader.onLoadValue();
             }
 
             @Override
-            protected String stringToValue(String input) {
+            protected String stringToTyped(String input) {
                 return input;
             }
 
@@ -331,12 +331,12 @@ public class ValuesPattern {
         });
     }
 
-    public static <T> Pattern ABTest(final ABTestBridge<T> bridge) {
-        return new Pattern(new AllowEmptyTester() {
+    public static <T> Pattern ABTest(final ABBridge<T> bridge) {
+        return new Pattern(new EmptyableTester() {
             @Override
             public boolean performTestNotEmpty(String input) throws Exception {
-                final T value = bridge.stringToValue(input);
-                return bridge.performTest(value, bridge.onValueA(), bridge.onValueB());
+                final T value = bridge.stringToTyped(input);
+                return bridge.performTest(value, bridge.getValueA(), bridge.getValueB());
             }
         }).priority(PRIORITY_GENERAL);
     }

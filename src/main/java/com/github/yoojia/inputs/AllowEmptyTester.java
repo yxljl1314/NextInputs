@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs;
 
-import static com.github.yoojia.inputs.Texts.isEmpty;
+import static com.github.yoojia.inputs.testers.Texts.isEmpty;
 
 /**
  * Allow empty input Tester

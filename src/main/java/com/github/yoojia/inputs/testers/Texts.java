@@ -1,4 +1,4 @@
-package com.github.yoojia.inputs;
+package com.github.yoojia.inputs.testers;
 
 /**
  * Test rule Wrapper
@@ -9,5 +9,9 @@ class Texts {
 
     public static boolean isEmpty(CharSequence value) {
         return value == null || value.length() == 0;
+    }
+
+    public static boolean regexMatch(String input, String regex) {
+        return java.util.regex.Pattern.compile(regex).matcher(input).matches();
     }
 }

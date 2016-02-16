@@ -1,5 +1,8 @@
 package com.github.yoojia.inputs;
 
+import com.github.yoojia.inputs.testers.MinLengthTester;
+import com.github.yoojia.inputs.testers.RangeLengthTester;
+
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
@@ -13,37 +16,15 @@ public class ValuesPattern {
     }
 
     public static Pattern MinLength(final int minLength) {
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                return input.length() >= minLength;
-            }
-        })
-        .msgOnFail("输入内容长度必须不少于：" + minLength)
-        .priority(PRIORITY_GENERAL);
+        return new Pattern(new MinLengthTester(minLength)).msgOnFail("输入内容长度必须不少于：" + minLength);
     }
 
     public static Pattern MaxLength(final int maxLength) {
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                return input.length() <= maxLength;
-            }
-        })
-        .msgOnFail("输入内容长度必须不多于：" + maxLength)
-        .priority(PRIORITY_GENERAL);
+        return new Pattern(new MinLengthTester(maxLength)).msgOnFail("输入内容长度必须不多于：" + maxLength);
     }
 
-    public static Pattern RangeLength(final int minLength, final int maxLength) {
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                final int length = input.length();
-                return minLength <= length && length <= maxLength;
-            }
-        })
-        .msgOnFail("输入内容长度必须在[" + maxLength + "," + maxLength + "]之间")
-        .priority(PRIORITY_GENERAL);
+    public static Pattern RangeLength(final int min, final int max) {
+        return new Pattern(new RangeLengthTester(min, max)).msgOnFail("输入内容长度必须在[" + max + "," + max + "]之间");
     }
 
     public static Pattern MinValue(final int minValue) {

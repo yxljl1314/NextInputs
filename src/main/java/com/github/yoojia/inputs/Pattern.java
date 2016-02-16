@@ -8,7 +8,7 @@ package com.github.yoojia.inputs;
 public class Pattern {
 
     String message;
-    int priority;
+    int priority = StaticPattern.PRIORITY_GENERAL;
     final AbstractTester tester;
 
     public Pattern(AbstractTester tester) {

@@ -1,4 +1,4 @@
-package com.github.yoojia.inputs.impl;
+package com.github.yoojia.inputs.testers;
 
 import com.github.yoojia.inputs.AllowEmptyTester;
 

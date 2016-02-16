@@ -11,8 +11,8 @@ public class BoolTester extends EmptyableTester {
 
     private final boolean mValue;
 
-    public BoolTester(boolean mTFValue) {
-        this.mValue = mTFValue;
+    public BoolTester(boolean mBool) {
+        this.mValue = mBool;
     }
 
     @Override

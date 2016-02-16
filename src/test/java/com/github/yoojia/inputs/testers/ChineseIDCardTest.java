@@ -1,6 +1,6 @@
-package com.github.yoojia.inputs;
+package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.testers.IDCardTester;
+import com.github.yoojia.inputs.Tester;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class ChineseIDCardTest {
 
-    private IDCardTester mTester;
+    private Tester mTester;
 
     @Before
     public void before(){

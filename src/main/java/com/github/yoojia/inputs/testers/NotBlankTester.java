@@ -16,6 +16,6 @@ public class NotBlankTester implements Tester {
         if (isEmpty(rawInput)) {
             return false;
         }
-        return regexMatch(rawInput, "^\\s*$");
+        return !regexMatch(rawInput, "^\\s*$");
     }
 }

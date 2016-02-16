@@ -1,20 +1,21 @@
 package com.github.yoojia.inputs;
 
 /**
- *
+ * A\B Values test bridge
  * @author 陈小锅 (yoojia.chen@gmail.com)
+ * @since 1.1
  */
-public abstract class ABTestBridge<T> {
+public abstract class ABBridge<T> {
 
     /**
      * @return Value A
      */
-    protected abstract T onValueA();
+    protected abstract T getValueA();
 
     /**
      * @return Value B
      */
-    protected T onValueB(){
+    protected T getValueB(){
         return null;
     }
 
@@ -23,7 +24,7 @@ public abstract class ABTestBridge<T> {
      * @param input String input
      * @return typed value
      */
-    protected abstract T stringToValue(String input);
+    protected abstract T stringToTyped(String input);
 
     /**
      * @param input Input value

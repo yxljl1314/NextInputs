@@ -1,12 +1,12 @@
 package com.github.yoojia.inputs;
 
-import static com.github.yoojia.inputs.testers.Texts.isEmpty;
+import static com.github.yoojia.inputs.Texts.isEmpty;
 
 /**
  * Allow empty input Tester
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public abstract class AllowEmptyTester implements AbstractTester {
+public abstract class EmptyableTester implements Tester {
 
     @Override
     public final boolean performTest(String rawInput) throws Exception {

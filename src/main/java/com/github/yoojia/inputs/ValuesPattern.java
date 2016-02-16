@@ -1,7 +1,6 @@
 package com.github.yoojia.inputs;
 
-import com.github.yoojia.inputs.testers.MinLengthTester;
-import com.github.yoojia.inputs.testers.RangeLengthTester;
+import com.github.yoojia.inputs.testers.*;
 
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
@@ -11,321 +10,195 @@ public class ValuesPattern {
     public static final int PRIORITY_REQUIRED = StaticPattern.PRIORITY_REQUIRED;
     public static final int PRIORITY_GENERAL = StaticPattern.PRIORITY_GENERAL;
 
+    /**
+     * 必要项，输入内容不能为空
+     * @return Pattern
+     */
     public static Pattern Required(){
         return StaticPattern.Required();
     }
 
-    public static Pattern MinLength(final int minLength) {
-        return new Pattern(new MinLengthTester(minLength)).msgOnFail("输入内容长度必须不少于：" + minLength);
+    /**
+     * 输入内容不能小于最小长度
+     * @param min 最小长度
+     * @return Pattern
+     */
+    public static Pattern MinLength(final int min) {
+        return new Pattern(new MinLengthTester(min)).msg("输入内容长度必须不少于：" + min);
     }
 
-    public static Pattern MaxLength(final int maxLength) {
-        return new Pattern(new MinLengthTester(maxLength)).msgOnFail("输入内容长度必须不多于：" + maxLength);
+    /**
+     * 输入内容不能大于最大长度
+     * @param max 最大长度
+     * @return Pattern
+     */
+    public static Pattern MaxLength(final int max) {
+        return new Pattern(new MinLengthTester(max)).msg("输入内容长度必须不多于：" + max);
     }
 
+    /**
+     * 输入内容在长度范围内
+     * @param min 最小长度
+     * @param max 最大长度
+     * @return Pattern
+     */
     public static Pattern RangeLength(final int min, final int max) {
-        return new Pattern(new RangeLengthTester(min, max)).msgOnFail("输入内容长度必须在[" + max + "," + max + "]之间");
+        return new Pattern(new RangeLengthTester(min, max)).msg("输入内容长度必须在[" + min + "," + max + "]之间");
     }
 
-    public static Pattern MinValue(final int minValue) {
-        return ABTest(new ABBridge<Integer>() {
-            @Override
-            protected Integer getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Integer stringToTyped(String input) {
-                return Integer.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
-                return input >= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不小于：" + minValue);
+    /**
+     * 输入数值不能小于最小值
+     * @param min 最小值
+     * @return Pattern
+     */
+    public static Pattern MinValue(final int min) {
+        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
     }
 
-    public static Pattern MinValue(final long minValue) {
-        return ABTest(new ABBridge<Long>() {
-            @Override
-            protected Long getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Long stringToTyped(String input) {
-                return Long.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Long input, Long valueA, Long valueB) {
-                return input >= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不小于：" + minValue);
+    /**
+     * 输入数值不能小于最小值
+     * @param min 最小值
+     * @return Pattern
+     */
+    public static Pattern MinValue(final long min) {
+        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
     }
 
-    public static Pattern MinValue(final float minValue) {
-        return ABTest(new ABBridge<Float>() {
-            @Override
-            protected Float getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Float stringToTyped(String input) {
-                return Float.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Float input, Float valueA, Float valueB) {
-                return input >= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不小于：" + minValue);
+    /**
+     * 输入数值不能小于最小值
+     * @param min 最小值
+     * @return Pattern
+     */
+    public static Pattern MinValue(final float min) {
+        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
     }
 
-    public static Pattern MinValue(final double minValue) {
-        return ABTest(new ABBridge<Double>() {
-            @Override
-            protected Double getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Double stringToTyped(String input) {
-                return Double.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Double input, Double valueA, Double valueB) {
-                return input >= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不小于：" + minValue);
+    /**
+     * 输入数值不能小于最小值
+     * @param min 最小值
+     * @return Pattern
+     */
+    public static Pattern MinValue(final double min) {
+        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
     }
 
-    public static Pattern MaxValue(final int maxValue) {
-        return ABTest(new ABBridge<Integer>() {
-            @Override
-            protected Integer getValueA() {
-                return maxValue;
-            }
-
-            @Override
-            protected Integer stringToTyped(String input) {
-                return Integer.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
-                return input <= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不大于：" + maxValue);
+    /**
+     * 输入数值不能大于最大值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern MaxValue(final int max) {
+        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
     }
 
-    public static Pattern MaxValue(final long maxValue) {
-        return ABTest(new ABBridge<Long>() {
-            @Override
-            protected Long getValueA() {
-                return maxValue;
-            }
-
-            @Override
-            protected Long stringToTyped(String input) {
-                return Long.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Long input, Long valueA, Long valueB) {
-                return input <= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不大于：" + maxValue);
+    /**
+     * 输入数值不能大于最大值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern MaxValue(final long max) {
+        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
     }
 
-    public static Pattern MaxValue(final float maxValue) {
-        return ABTest(new ABBridge<Float>() {
-            @Override
-            protected Float getValueA() {
-                return maxValue;
-            }
-
-            @Override
-            protected Float stringToTyped(String input) {
-                return Float.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Float input, Float valueA, Float valueB) {
-                return input <= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不大于：" + maxValue);
+    /**
+     * 输入数值不能大于最大值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern MaxValue(final float max) {
+        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
     }
 
-    public static Pattern MaxValue(final double maxValue) {
-        return ABTest(new ABBridge<Double>() {
-            @Override
-            protected Double getValueA() {
-                return maxValue;
-            }
-
-            @Override
-            protected Double stringToTyped(String input) {
-                return Double.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Double input, Double valueA, Double valueB) {
-                return input <= valueA;
-            }
-        }).msgOnFail("输入数值大小必须不大于：" + maxValue);
+    /**
+     * 输入数值不能大于最大值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern MaxValue(final double max) {
+        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
     }
 
-    public static Pattern RangeValue(final int minValue, final int maxValue) {
-        return ABTest(new ABBridge<Integer>() {
-            @Override
-            protected Integer getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Integer getValueB() {
-                return maxValue;
-            }
-
-            @Override
-            protected Integer stringToTyped(String input) {
-                return Integer.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Integer input, Integer valueA, Integer valueB) {
-                return valueA <= input && input <= valueB;
-            }
-        }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
+    /**
+     * 输入数值必须在最值区间
+     * @param min 最小值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern RangeValue(final int min, final int max) {
+        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
-    public static Pattern RangeValue(final long minValue, final long maxValue) {
-        return ABTest(new ABBridge<Long>() {
-            @Override
-            protected Long getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Long getValueB() {
-                return maxValue;
-            }
-
-            @Override
-            protected Long stringToTyped(String input) {
-                return Long.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Long input, Long valueA, Long valueB) {
-                return valueA <= input && input <= valueB;
-            }
-        }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
+    /**
+     * 输入数值必须在最值区间
+     * @param min 最小值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern RangeValue(final long min, final long max) {
+        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
-    public static Pattern RangeValue(final float minValue, final float maxValue) {
-        return ABTest(new ABBridge<Float>() {
-            @Override
-            protected Float getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Float getValueB() {
-                return maxValue;
-            }
-
-            @Override
-            protected Float stringToTyped(String input) {
-                return Float.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Float input, Float valueA, Float valueB) {
-                return valueA <= input && input <= valueB;
-            }
-        }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
+    /**
+     * 输入数值必须在最值区间
+     * @param min 最小值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern RangeValue(final float min, final float max) {
+        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
-    public static Pattern RangeValue(final double minValue, final double maxValue) {
-        return ABTest(new ABBridge<Double>() {
-            @Override
-            protected Double getValueA() {
-                return minValue;
-            }
-
-            @Override
-            protected Double getValueB() {
-                return maxValue;
-            }
-
-            @Override
-            protected Double stringToTyped(String input) {
-                return Double.valueOf(input);
-            }
-
-            @Override
-            protected boolean performTest(Double input, Double valueA, Double valueB) {
-                return valueA <= input && input <= valueB;
-            }
-        }).msgOnFail("输入数值大小必须在[" + minValue + "," + maxValue + "]之间");
+    /**
+     * 输入数值必须在最值区间
+     * @param min 最小值
+     * @param max 最大值
+     * @return Pattern
+     */
+    public static Pattern RangeValue(final double min, final double max) {
+        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
+    /**
+     * 输入内容与加载器的内容相同
+     * @param loader 加载器
+     * @return Pattern
+     */
     public static Pattern EqualsTo(final Loader<String> loader){
-        return ABTest(new ABBridge<String>() {
-            @Override
-            protected String getValueA() {
-                return loader.onLoadValue();
-            }
-
-            @Override
-            protected String stringToTyped(String input) {
-                return input;
-            }
-
-            @Override
-            protected boolean performTest(String input, String valueA, String valueB) {
-                return input.equals(valueA);
-            }
-        }).msgOnFail("输入内容与要求不一致");
+        return ABTest(new EqualsBridge(loader)).msg("输入内容与要求不一致");
     }
 
+    /**
+     * 输入内容必须与指定内容相同
+     * @param fixedValue 指定内容
+     * @return Pattern
+     */
     public static Pattern EqualsTo(final String fixedValue) {
         return EqualsTo(new Loader<String>() {
             @Override
-            public String onLoadValue() {
+            public String getValue() {
                 return fixedValue;
             }
         });
     }
 
-    public static Pattern NotEqualsTo(final Loader<String> loader){
-        return ABTest(new ABBridge<String>() {
-            @Override
-            protected String getValueA() {
-                return loader.onLoadValue();
-            }
-
-            @Override
-            protected String stringToTyped(String input) {
-                return input;
-            }
-
-            @Override
-            protected boolean performTest(String input, String valueA, String valueB) {
-                return !input.equals(valueA);
-            }
-        }).msgOnFail("输入内容不能与要求的相同");
+    /**
+     * 输入内容必须与加载器的内容不相同
+     * @param loader 加载器
+     * @return Pattern
+     */
+    public static Pattern NotEquals(final Loader<String> loader){
+        return ABTest(new NotEqualsBridge(loader)).msg("输入内容不能与要求的相同");
     }
 
-    public static Pattern NotEqualsTo(final String fixedValue) {
-        return NotEqualsTo(new Loader<String>() {
+    /**
+     * 输入内容必须与指定内容不相同
+     * @param fixedValue 指定内容
+     * @return Pattern
+     */
+    public static Pattern NotEquals(final String fixedValue) {
+        return NotEquals(new Loader<String>() {
             @Override
-            public String onLoadValue() {
+            public String getValue() {
                 return fixedValue;
             }
         });
@@ -338,7 +211,7 @@ public class ValuesPattern {
                 final T value = bridge.stringToTyped(input);
                 return bridge.performTest(value, bridge.getValueA(), bridge.getValueB());
             }
-        }).priority(PRIORITY_GENERAL);
+        });
     }
 
 }

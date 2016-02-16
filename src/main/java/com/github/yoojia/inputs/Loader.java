@@ -6,6 +6,6 @@ package com.github.yoojia.inputs;
  */
 public interface Loader<T> {
 
-    T onLoadValue();
+    T getValue();
 
 }

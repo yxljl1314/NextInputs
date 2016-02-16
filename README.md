@@ -145,8 +145,8 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 - MinValue - 最小值
 - MaxValue - 最大值
 - RangeValue - 数值范围
-- EqualsTo - 与指定内容相同
-- NotEqualsTo - 与指定内容不相同
+- Equals - 与指定内容相同
+- NotEquals - 与指定内容不相同
 
 ## Required -  必填项目
 
@@ -176,16 +176,16 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 
 `ValuesPattern.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
 
-## EqualsTo - 与指定内容相同
+## Equals - 与指定内容相同
 
-`ValuesPattern.EqualsTo(...)`，输入内容与指定内容相同。EqualsTo有两个实现方式，一个是`EqualsTo(Loader<String>)`，另一个是`EqualsTo(fixedString)`；
+`ValuesPattern.Equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
 
-- `EqualsTo(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`onLoadValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
-- `EqualsTo(fixedString)`，与指定固定字符串相同；
+- `Equals(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`getValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
+- `Equals(fixedString)`，与指定固定字符串相同；
 
-## NotEqualsTo - 与指定内容不相同
+## NotEquals - 与指定内容不相同
 
-方式与`ValuesPattern.EqualsTo`相同，判断方式取反。
+方式与`ValuesPattern.Equals`相同，判断方式取反。
 
 ----
 

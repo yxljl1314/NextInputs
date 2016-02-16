@@ -15,7 +15,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Required(){
-        return new Pattern(new NotEmptyTester()).msgOnFail("此为必填项目").priority(PRIORITY_REQUIRED);
+        return new Pattern(new NotEmptyTester()).msg("此为必填项目").priority(PRIORITY_REQUIRED);
     }
 
     /**
@@ -23,7 +23,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern NotBlank(){
-        return new Pattern(new NotBlankTester()).msgOnFail("请输入非空内容");
+        return new Pattern(new NotBlankTester()).msg("请输入非空内容");
     }
 
     /**
@@ -31,7 +31,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Digits(){
-        return new Pattern(new DigitsTester()).msgOnFail("请输入数字");
+        return new Pattern(new DigitsTester()).msg("请输入数字");
     }
 
     /**
@@ -39,7 +39,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Email(){
-        return new Pattern(new EmailTester()).msgOnFail("请输入有效的邮件地址");
+        return new Pattern(new EmailTester()).msg("请输入有效的邮件地址");
     }
 
     /**
@@ -47,7 +47,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IPv4(){
-        return new Pattern(new IPv4Tester()).msgOnFail("请输入有效的IP地址");
+        return new Pattern(new IPv4Tester()).msg("请输入有效的IP地址");
     }
 
     /**
@@ -55,7 +55,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Host(){
-        return new Pattern(new HostTester()).msgOnFail("请输入有效的域名地址");
+        return new Pattern(new HostTester()).msg("请输入有效的域名地址");
     }
 
     /**
@@ -63,7 +63,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern URL(){
-        return new Pattern(new URLTester()).msgOnFail("请输入有效的网址");
+        return new Pattern(new URLTester()).msg("请输入有效的网址");
     }
 
     /**
@@ -71,7 +71,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Numeric(){
-        return new Pattern(new NumericTester()).msgOnFail("请输入有效的数值");
+        return new Pattern(new NumericTester()).msg("请输入有效的数值");
     }
 
     /**
@@ -79,7 +79,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern BlankCard(){
-        return new Pattern(new BlankCardTester()).msgOnFail("请输入有效的银行卡/信用卡号码");
+        return new Pattern(new BlankCardTester()).msg("请输入有效的银行卡/信用卡号码");
     }
 
     /**
@@ -87,7 +87,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern ChineseIDCard(){
-        return new Pattern(new IDCardTester()).msgOnFail("请输入有效的身份证号");
+        return new Pattern(new IDCardTester()).msg("请输入有效的身份证号");
     }
 
     /**
@@ -95,7 +95,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern ChineseMobile(){
-        return new Pattern(new MobileTester()).msgOnFail("请输入有效的手机号");
+        return new Pattern(new MobileTester()).msg("请输入有效的手机号");
     }
 
     /**
@@ -103,7 +103,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IsTrue(){
-        return new Pattern(new BoolTester(true)).msgOnFail("当前项必须为True");
+        return new Pattern(new BoolTester(true)).msg("当前项必须为True");
     }
 
     /**
@@ -111,7 +111,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IsFalse(){
-        return new Pattern(new BoolTester(false)).msgOnFail("当前项必须为False");
+        return new Pattern(new BoolTester(false)).msg("当前项必须为False");
     }
 
 }

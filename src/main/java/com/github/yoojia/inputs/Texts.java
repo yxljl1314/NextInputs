@@ -15,7 +15,11 @@ public class Texts {
         return value == null || value.length() == 0;
     }
 
+    /**
+     * Is match regex 
+     **/
     public static boolean regexMatch(String input, String regex) {
         return java.util.regex.Pattern.compile(regex).matcher(input).matches();
     }
+
 }

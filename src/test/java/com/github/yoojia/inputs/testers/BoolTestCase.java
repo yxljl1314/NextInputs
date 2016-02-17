@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class BoolTest {
+public class BoolTestCase {
 
     @Test
     public void testTrue() throws Exception {

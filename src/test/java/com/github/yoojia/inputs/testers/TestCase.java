@@ -8,19 +8,18 @@ import org.junit.Test;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class NotEmptyTest {
+public class TestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new NotEmptyTester();
-        Assert.assertTrue(tester.performTest("1"));
-        Assert.assertTrue(tester.performTest("abc"));
+        Tester tester = new IPv4Tester();
+        Assert.assertTrue(tester.performTest(null));
+        Assert.assertTrue(tester.performTest(""));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new NotEmptyTester();
-        Assert.assertFalse(tester.performTest(null));
+        Tester tester = new IPv4Tester();
         Assert.assertFalse(tester.performTest(""));
     }
 }

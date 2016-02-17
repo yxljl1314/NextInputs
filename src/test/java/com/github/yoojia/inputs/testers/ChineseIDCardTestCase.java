@@ -10,7 +10,7 @@ import org.junit.Test;
  *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class ChineseIDCardTest {
+public class ChineseIDCardTestCase {
 
     private Tester mTester;
 

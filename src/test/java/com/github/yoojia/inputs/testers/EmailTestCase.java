@@ -9,7 +9,7 @@ import org.junit.Test;
  * @since 1.1
  * http://blogs.msdn.com/b/testing123/archive/2009/02/05/email-address-test-cases.aspx
  */
-public class EmailTest {
+public class EmailTestCase {
 
     @Test
     public void testPassed() throws Exception {

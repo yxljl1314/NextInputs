@@ -11,7 +11,7 @@ public interface Verifier {
      * 执行校验
      * @param rawInput 原始输入数据
      * @return 校验是否通过
-     * @throws Exception
+     * @throws Exception If error
      */
     boolean perform(String rawInput) throws Exception;
 

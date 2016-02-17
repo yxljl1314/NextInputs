@@ -16,8 +16,11 @@ public class Texts {
     }
 
     /**
-     * Is match regex 
-     **/
+     * If input matched regex
+     * @param input Input String
+     * @param regex Regex
+     * @return is matched
+     */
     public static boolean regexMatch(String input, String regex) {
         return java.util.regex.Pattern.compile(regex).matcher(input).matches();
     }

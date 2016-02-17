@@ -1,11 +1,6 @@
 package com.github.yoojia.inputs;
 
-import com.github.yoojia.inputs.impl.BlankCardTester;
-import com.github.yoojia.inputs.impl.ChineseIDCardTester;
-import com.github.yoojia.inputs.impl.DigitsTester;
-import com.github.yoojia.inputs.impl.NumericTester;
-
-import static com.github.yoojia.inputs.Texts.isEmpty;
+import com.github.yoojia.inputs.testers.*;
 
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
@@ -20,14 +15,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Required(){
-        return new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                return !isEmpty(rawInput);
-            }
-        })
-        .priority(PRIORITY_REQUIRED)
-        .msgOnFail("此为必填条目");
+        return new Pattern(new NotEmptyVerifier()).msg("此为必填项目").priority(PRIORITY_REQUIRED);
     }
 
     /**
@@ -35,17 +23,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern NotBlank(){
-        return new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                if (isEmpty(rawInput)) {
-                    return false;
-                }
-                return regexMatch(rawInput, "^\\s*$");
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入非空内容");
+        return new Pattern(new NotBlankVerifier()).msg("请输入非空内容");
     }
 
     /**
@@ -53,9 +31,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Digits(){
-        return new Pattern(new DigitsTester())
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入数字");
+        return new Pattern(new DigitsVerifier()).msg("请输入数字");
     }
 
     /**
@@ -63,21 +39,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Email(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                return regexMatch(input.toLowerCase(), "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+" +
-                        "(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+" +
-                        "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入有效的邮件地址");
-    }
-
-    private static boolean isIPv4(String notEmptyInput){
-        return regexMatch(notEmptyInput,
-                "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
+        return new Pattern(new EmailVerifier()).msg("请输入有效的邮件地址");
     }
 
     /**
@@ -85,31 +47,15 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IPv4(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-                return isIPv4(notEmptyInput);
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入有效的IP地址");
+        return new Pattern(new IPv4Verifier()).msg("请输入有效的IP地址");
     }
-
 
     /**
      * 域名地址
      * @return Pattern
      */
     public static Pattern Host(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-                return isIPv4(notEmptyInput) ||
-                        regexMatch(notEmptyInput.toLowerCase(), "^([a-z0-9]([a-z0-9\\-]{0,65}[a-z0-9])?\\.)+[a-z]{2,6}$");
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入有效的域名地址");
+        return new Pattern(new HostVerifier()).msg("请输入有效的域名地址");
     }
 
     /**
@@ -117,15 +63,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern URL(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-                return regexMatch(notEmptyInput.toLowerCase(),
-                        "^(https?:\\/\\/)?[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?$");
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入有效的网址");
+        return new Pattern(new URLVerifier()).msg("请输入有效的网址");
     }
 
     /**
@@ -133,9 +71,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern Numeric(){
-        return new Pattern(new NumericTester())
-                .priority(PRIORITY_GENERAL)
-                .msgOnFail("请输入有效的数值");
+        return new Pattern(new NumericVerifier()).msg("请输入有效的数值");
     }
 
     /**
@@ -143,9 +79,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern BlankCard(){
-        return new Pattern(new BlankCardTester())
-                .priority(PRIORITY_GENERAL)
-                .msgOnFail("请输入有效的银行卡/信用卡号码");
+        return new Pattern(new BlankCardVerifier()).msg("请输入有效的银行卡/信用卡号码");
     }
 
     /**
@@ -153,9 +87,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern ChineseIDCard(){
-        return new Pattern(new ChineseIDCardTester())
-                .priority(PRIORITY_GENERAL)
-                .msgOnFail("请输入有效的身份证号");
+        return new Pattern(new IDCardVerifier()).msg("请输入有效的身份证号");
     }
 
     /**
@@ -163,14 +95,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern ChineseMobile(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-                return regexMatch(notEmptyInput, "^(\\+?\\d{2}-?)?(1[0-9])\\d{9}$");
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("请输入有效的手机号");
+        return new Pattern(new MobileVerifier()).msg("请输入有效的手机号");
     }
 
     /**
@@ -178,14 +103,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IsTrue(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                return "true".equals(input.toLowerCase());
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("当前项必须为True");
+        return new Pattern(new BoolVerifier(true)).msg("当前项必须为True");
     }
 
     /**
@@ -193,28 +111,7 @@ public class StaticPattern {
      * @return Pattern
      */
     public static Pattern IsFalse(){
-        return new Pattern(new AllowEmptyTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                return "false".equals(input.toLowerCase());
-            }
-        })
-        .priority(PRIORITY_GENERAL)
-        .msgOnFail("当前项必须为False");
+        return new Pattern(new BoolVerifier(false)).msg("当前项必须为False");
     }
-
-    public static Pattern RegexMatch(final String regex) {
-        return new Pattern(new AbstractTester() {
-            @Override
-            public boolean performTest(String rawInput) throws Exception {
-                return regexMatch(rawInput, regex);
-            }
-        }).priority(PRIORITY_GENERAL);
-    }
-
-    private static boolean regexMatch(String input, String regex) {
-        return java.util.regex.Pattern.compile(regex).matcher(input).matches();
-    }
-    
 
 }

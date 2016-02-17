@@ -1,19 +1,18 @@
-package com.github.yoojia.inputs.impl;
+package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-
 /**
- * Chinese ID Card AllowEmptyTester
- *
- * @author 陈小锅 (yoojia.chen@gmail.com)
+ * 中国身份证号码15位和18位校验器
+ * @author Yoojia Chen (yoojia.chen@gmail.com)
+ * @since 1.0
  */
-public class ChineseIDCardTester extends AllowEmptyTester {
+public class IDCardVerifier extends EmptyableVerifier {
 
     static final int[] WEIGHT = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
 

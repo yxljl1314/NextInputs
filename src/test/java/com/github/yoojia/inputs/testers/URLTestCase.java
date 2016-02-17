@@ -16,6 +16,10 @@ public class URLTestCase {
         Assert.assertTrue(tester.performTest(null));
         Assert.assertTrue(tester.performTest(""));
         Assert.assertTrue(tester.performTest("http://163.com"));
+        Assert.assertTrue(tester.performTest("http://163-gd.com"));
+        Assert.assertTrue(tester.performTest("http://163_cn.com"));
+        Assert.assertTrue(tester.performTest("http://163.com.cn"));
+        Assert.assertTrue(tester.performTest("http://api.163.com.cn"));
         Assert.assertTrue(tester.performTest("https://google.com"));
         Assert.assertTrue(tester.performTest("http://163.com/api"));
         Assert.assertTrue(tester.performTest("http://163.com/titles/"));
@@ -27,7 +31,16 @@ public class URLTestCase {
     @Test
     public void testFail() throws Exception {
         Tester tester = new URLTester();
-        Assert.assertFalse(tester.performTest("www.163.com"));
+        Assert.assertFalse(tester.performTest("www163com"));
+        Assert.assertFalse(tester.performTest("www@163.com"));
+        Assert.assertFalse(tester.performTest("www:163.com"));
+        Assert.assertFalse(tester.performTest("ftp://www.163.com"));
+        Assert.assertFalse(tester.performTest("ws://163.com"));
         Assert.assertFalse(tester.performTest("xxx://163.com"));
+        Assert.assertFalse(tester.performTest("http:163..com"));
+        Assert.assertFalse(tester.performTest("http://163..com"));
+        Assert.assertFalse(tester.performTest("http:///163.com"));
+        Assert.assertFalse(tester.performTest("http//163.com"));
+        Assert.assertFalse(tester.performTest("https://.163.com"));
     }
 }

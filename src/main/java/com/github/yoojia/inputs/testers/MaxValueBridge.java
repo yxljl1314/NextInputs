@@ -23,7 +23,7 @@ public class MaxValueBridge extends ValueBridge{
     }
 
     @Override
-    protected boolean performTest(Double input, Double valueA, Double valueB) {
+    public boolean performVerify(Double input, Double valueA, Double valueB) {
         return input <= valueA;
     }
 }

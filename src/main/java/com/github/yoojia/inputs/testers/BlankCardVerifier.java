@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import java.util.regex.Pattern;
 
@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @see 1.0
  */
-public class BlankCardTester extends EmptyableTester {
+public class BlankCardVerifier extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String input) {

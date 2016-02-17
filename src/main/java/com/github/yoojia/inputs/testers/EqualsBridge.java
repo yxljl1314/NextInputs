@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs.testers;
 
 import com.github.yoojia.inputs.ABBridge;
-import com.github.yoojia.inputs.Loader;
+import com.github.yoojia.inputs.LazyLoader;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
@@ -9,29 +9,29 @@ import com.github.yoojia.inputs.Loader;
  */
 public class EqualsBridge extends ABBridge<String>{
 
-    private final Loader<String> mStringLoader;
+    private final LazyLoader<String> mStringLazyLoader;
 
-    public EqualsBridge(Loader<String> loader) {
-        this.mStringLoader = loader;
+    public EqualsBridge(LazyLoader<String> lazyLoader) {
+        this.mStringLazyLoader = lazyLoader;
     }
 
     @Override
-    protected String getValueA() {
-        return mStringLoader.getValue();
+    public String getValueA() {
+        return mStringLazyLoader.getValue();
     }
 
     @Override
-    protected String getValueB() {
-        return mStringLoader.getValue();
+    public String getValueB() {
+        return mStringLazyLoader.getValue();
     }
 
     @Override
-    protected String stringToTyped(String input) {
+    public String stringToTyped(String input) {
         return input;
     }
 
     @Override
-    protected boolean performTest(String input, String valueA, String valueB) {
+    public boolean performVerify(String input, String valueA, String valueB) {
         return input.equals(valueA);
     }
 }

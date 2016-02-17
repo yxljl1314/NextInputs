@@ -20,10 +20,10 @@ public class Pattern {
     /**
      * 具体校验算法实现接口
      */
-    final Tester tester;
+    final Verifier mVerifier;
 
-    public Pattern(Tester tester) {
-        this.tester = tester;
+    public Pattern(Verifier verifier) {
+        this.mVerifier = verifier;
     }
 
     public Pattern msgOnFail(String message){

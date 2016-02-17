@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @author Yoojia Chen (yoojia.chen@gmail.com)
  * @since 1.0
  */
-public class IDCardTester extends EmptyableTester {
+public class IDCardVerifier extends EmptyableVerifier {
 
     static final int[] WEIGHT = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
 

@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,21 +12,21 @@ public class HostTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new HostTester();
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("1.2.3.4"));
-        Assert.assertTrue(tester.performTest("abc.com"));
-        Assert.assertTrue(tester.performTest("api.abc.com"));
+        Verifier verifier = new HostVerifier();
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("1.2.3.4"));
+        Assert.assertTrue(verifier.perform("abc.com"));
+        Assert.assertTrue(verifier.perform("api.abc.com"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new HostTester();
-        Assert.assertFalse(tester.performTest("abc"));
-        Assert.assertFalse(tester.performTest("abc..com"));
-        Assert.assertFalse(tester.performTest("1.2.3.4.5"));
-        Assert.assertFalse(tester.performTest("http://abc.com"));
-        Assert.assertFalse(tester.performTest("http://1.2.3.4"));
+        Verifier verifier = new HostVerifier();
+        Assert.assertFalse(verifier.perform("abc"));
+        Assert.assertFalse(verifier.perform("abc..com"));
+        Assert.assertFalse(verifier.perform("1.2.3.4.5"));
+        Assert.assertFalse(verifier.perform("http://abc.com"));
+        Assert.assertFalse(verifier.perform("http://1.2.3.4"));
     }
 }

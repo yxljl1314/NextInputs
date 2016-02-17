@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 
 import static com.github.yoojia.inputs.Texts.isEmpty;
 
@@ -9,9 +9,9 @@ import static com.github.yoojia.inputs.Texts.isEmpty;
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class NotEmptyTester implements Tester {
+public class NotEmptyVerifier implements Verifier {
     @Override
-    public boolean performTest(String rawInput) throws Exception {
+    public boolean perform(String rawInput) throws Exception {
         return !isEmpty(rawInput);
     }
 }

@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 
 import static com.github.yoojia.inputs.Texts.isEmpty;
 import static com.github.yoojia.inputs.Texts.regexMatch;
@@ -10,9 +10,9 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class NotBlankTester implements Tester {
+public class NotBlankVerifier implements Verifier {
     @Override
-    public boolean performTest(String rawInput) throws Exception {
+    public boolean perform(String rawInput) throws Exception {
         if (isEmpty(rawInput)) {
             return false;
         }

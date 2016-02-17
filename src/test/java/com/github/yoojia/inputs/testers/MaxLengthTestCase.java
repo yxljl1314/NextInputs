@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,18 +12,18 @@ public class MaxLengthTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new MaxLengthTester(10);
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("1"));
-        Assert.assertTrue(tester.performTest("12345"));
-        Assert.assertTrue(tester.performTest("123456789"));
+        Verifier verifier = new MaxLengthVerifier(10);
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("1"));
+        Assert.assertTrue(verifier.perform("12345"));
+        Assert.assertTrue(verifier.perform("123456789"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new MaxLengthTester(5);
-        Assert.assertFalse(tester.performTest("123456"));
-        Assert.assertFalse(tester.performTest("123456789"));
+        Verifier verifier = new MaxLengthVerifier(5);
+        Assert.assertFalse(verifier.perform("123456"));
+        Assert.assertFalse(verifier.perform("123456789"));
     }
 }

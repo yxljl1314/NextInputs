@@ -1,17 +1,17 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class RangeLengthTester extends EmptyableTester {
+public class RangeLengthVerifier extends EmptyableVerifier {
 
     private final int mMinLength;
     private final int mMaxLength;
 
-    public RangeLengthTester(int min, int max) {
+    public RangeLengthVerifier(int min, int max) {
         this.mMinLength = min;
         this.mMaxLength = max;
     }

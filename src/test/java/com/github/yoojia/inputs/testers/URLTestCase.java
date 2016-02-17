@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,35 +12,35 @@ public class URLTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new URLTester();
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("http://163.com"));
-        Assert.assertTrue(tester.performTest("http://163-gd.com"));
-        Assert.assertTrue(tester.performTest("http://163_cn.com"));
-        Assert.assertTrue(tester.performTest("http://163.com.cn"));
-        Assert.assertTrue(tester.performTest("http://api.163.com.cn"));
-        Assert.assertTrue(tester.performTest("https://google.com"));
-        Assert.assertTrue(tester.performTest("http://163.com/api"));
-        Assert.assertTrue(tester.performTest("http://163.com/titles/"));
-        Assert.assertTrue(tester.performTest("http://163.com/titles/?a=b"));
-        Assert.assertTrue(tester.performTest("http://example.org/a-umlaut-%C3%A4"));
-        Assert.assertTrue(tester.performTest("https://www.google.co.kr/url?sa=t&rct=j&q=&esrc=s"));
+        Verifier verifier = new URLVerifier();
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("http://163.com"));
+        Assert.assertTrue(verifier.perform("http://163-gd.com"));
+        Assert.assertTrue(verifier.perform("http://163_cn.com"));
+        Assert.assertTrue(verifier.perform("http://163.com.cn"));
+        Assert.assertTrue(verifier.perform("http://api.163.com.cn"));
+        Assert.assertTrue(verifier.perform("https://google.com"));
+        Assert.assertTrue(verifier.perform("http://163.com/api"));
+        Assert.assertTrue(verifier.perform("http://163.com/titles/"));
+        Assert.assertTrue(verifier.perform("http://163.com/titles/?a=b"));
+        Assert.assertTrue(verifier.perform("http://example.org/a-umlaut-%C3%A4"));
+        Assert.assertTrue(verifier.perform("https://www.google.co.kr/url?sa=t&rct=j&q=&esrc=s"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new URLTester();
-        Assert.assertFalse(tester.performTest("www163com"));
-        Assert.assertFalse(tester.performTest("www@163.com"));
-        Assert.assertFalse(tester.performTest("www:163.com"));
-        Assert.assertFalse(tester.performTest("ftp://www.163.com"));
-        Assert.assertFalse(tester.performTest("ws://163.com"));
-        Assert.assertFalse(tester.performTest("xxx://163.com"));
-        Assert.assertFalse(tester.performTest("http:163..com"));
-        Assert.assertFalse(tester.performTest("http://163..com"));
-        Assert.assertFalse(tester.performTest("http:///163.com"));
-        Assert.assertFalse(tester.performTest("http//163.com"));
-        Assert.assertFalse(tester.performTest("https://.163.com"));
+        Verifier verifier = new URLVerifier();
+        Assert.assertFalse(verifier.perform("www163com"));
+        Assert.assertFalse(verifier.perform("www@163.com"));
+        Assert.assertFalse(verifier.perform("www:163.com"));
+        Assert.assertFalse(verifier.perform("ftp://www.163.com"));
+        Assert.assertFalse(verifier.perform("ws://163.com"));
+        Assert.assertFalse(verifier.perform("xxx://163.com"));
+        Assert.assertFalse(verifier.perform("http:163..com"));
+        Assert.assertFalse(verifier.perform("http://163..com"));
+        Assert.assertFalse(verifier.perform("http:///163.com"));
+        Assert.assertFalse(verifier.perform("http//163.com"));
+        Assert.assertFalse(verifier.perform("https://.163.com"));
     }
 }

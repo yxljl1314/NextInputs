@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs;
 
 /**
- * A\B Values test bridge
+ * 桥接两个数值(A\B)及数据转换的接口
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.1
  */
@@ -10,21 +10,21 @@ public abstract class ABBridge<T> {
     /**
      * @return Value A
      */
-    protected abstract T getValueA();
+    public abstract T getValueA();
 
     /**
      * @return Value B
      */
-    protected T getValueB(){
+    public T getValueB(){
         return null;
     }
 
     /**
-     * Convert String input to Typed value
+     * 将String输入转换为泛型目标类型的数值
      * @param input String input
      * @return typed value
      */
-    protected abstract T stringToTyped(String input);
+    public abstract T stringToTyped(String input);
 
     /**
      * @param input Input value
@@ -32,5 +32,5 @@ public abstract class ABBridge<T> {
      * @param valueB Value B
      * @return test result
      */
-    protected abstract boolean performTest(T input, T valueA, T valueB);
+    public abstract boolean performVerify(T input, T valueA, T valueB);
 }

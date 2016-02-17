@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,18 +12,18 @@ public class NotBlankTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new NotBlankTester();
-        Assert.assertTrue(tester.performTest("1"));
-        Assert.assertTrue(tester.performTest("abc"));
+        Verifier verifier = new NotBlankVerifier();
+        Assert.assertTrue(verifier.perform("1"));
+        Assert.assertTrue(verifier.perform("abc"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new NotBlankTester();
-        Assert.assertFalse(tester.performTest(null));
-        Assert.assertFalse(tester.performTest(""));
-        Assert.assertFalse(tester.performTest("  "));
-        Assert.assertFalse(tester.performTest(" "));
-        Assert.assertFalse(tester.performTest("    "));
+        Verifier verifier = new NotBlankVerifier();
+        Assert.assertFalse(verifier.perform(null));
+        Assert.assertFalse(verifier.perform(""));
+        Assert.assertFalse(verifier.perform("  "));
+        Assert.assertFalse(verifier.perform(" "));
+        Assert.assertFalse(verifier.perform("    "));
     }
 }

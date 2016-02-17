@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,21 +12,21 @@ public class ChineseMobileTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new MobileTester();
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("13800138000"));
-        Assert.assertTrue(tester.performTest("13570859999"));
-        Assert.assertTrue(tester.performTest("13112111001"));
+        Verifier verifier = new MobileVerifier();
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("13800138000"));
+        Assert.assertTrue(verifier.perform("13570859999"));
+        Assert.assertTrue(verifier.perform("13112111001"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new MobileTester();
-        Assert.assertFalse(tester.performTest("12306"));
-        Assert.assertFalse(tester.performTest("mobile"));
-        Assert.assertFalse(tester.performTest("88888888"));
-        Assert.assertFalse(tester.performTest("123456789012"));
-        Assert.assertFalse(tester.performTest("1234567890X"));
+        Verifier verifier = new MobileVerifier();
+        Assert.assertFalse(verifier.perform("12306"));
+        Assert.assertFalse(verifier.perform("mobile"));
+        Assert.assertFalse(verifier.perform("88888888"));
+        Assert.assertFalse(verifier.perform("123456789012"));
+        Assert.assertFalse(verifier.perform("1234567890X"));
     }
 }

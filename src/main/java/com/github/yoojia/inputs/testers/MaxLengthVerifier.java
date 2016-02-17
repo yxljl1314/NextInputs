@@ -1,16 +1,16 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MaxLengthTester extends EmptyableTester {
+public class MaxLengthVerifier extends EmptyableVerifier {
 
     private final int mLength;
 
-    public MaxLengthTester(int mLength) {
+    public MaxLengthVerifier(int mLength) {
         this.mLength = mLength;
     }
 

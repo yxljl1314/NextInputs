@@ -18,7 +18,7 @@ public class NextInputs {
         }
     };
 
-    private final ArrayList<TestMeta> mTestMetaArray = new ArrayList<>();
+    private final ArrayList<VerifyMeta> mVerifyMetaArray = new ArrayList<>();
 
     private MessageDisplay mMessageDisplay = new MessageDisplay() {
         @Override
@@ -37,9 +37,9 @@ public class NextInputs {
      * @return 校验测试结果是否成功
      */
     public boolean test(){
-        TestMeta testing = null;
+        VerifyMeta testing = null;
         try{
-            for (TestMeta meta : mTestMetaArray) {
+            for (VerifyMeta meta : mVerifyMetaArray) {
                 testing = meta;
                 if ( ! performTest(meta) && mStopIfFail) {
                     return false;
@@ -63,7 +63,7 @@ public class NextInputs {
             throw new IllegalArgumentException("Patterns is required !");
         }
         Arrays.sort(patterns, ORDERING);
-        mTestMetaArray.add(new TestMeta(input, patterns));
+        mVerifyMetaArray.add(new VerifyMeta(input, patterns));
         return this;
     }
 
@@ -87,10 +87,10 @@ public class NextInputs {
         mMessageDisplay = display;
     }
 
-    private boolean performTest(TestMeta meta) throws Exception {
-        final String value = meta.input.onLoadValue();
+    private boolean performTest(VerifyMeta meta) throws Exception {
+        final String value = meta.input.getValue();
         for (Pattern pattern : meta.patterns) {
-            if ( ! pattern.tester.performTest(value)) {
+            if ( ! pattern.mVerifier.perform(value)) {
                 mMessageDisplay.show(meta.input, pattern.message);
                 return false;
             }

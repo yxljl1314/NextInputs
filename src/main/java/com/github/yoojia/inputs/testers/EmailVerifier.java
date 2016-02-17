@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import static com.github.yoojia.inputs.Texts.regexMatch;
 
@@ -9,7 +9,7 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class EmailTester extends EmptyableTester {
+public class EmailVerifier extends EmptyableVerifier {
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
         return regexMatch(notEmptyInput.toLowerCase(), "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+" +

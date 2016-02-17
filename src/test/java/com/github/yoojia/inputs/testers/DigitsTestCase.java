@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,23 +12,23 @@ public class DigitsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new DigitsTester();
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("1"));
-        Assert.assertTrue(tester.performTest("123"));
-        Assert.assertTrue(tester.performTest("99999999999"));
+        Verifier verifier = new DigitsVerifier();
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("1"));
+        Assert.assertTrue(verifier.perform("123"));
+        Assert.assertTrue(verifier.perform("99999999999"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new DigitsTester();
-        Assert.assertFalse(tester.performTest("1a"));
-        Assert.assertFalse(tester.performTest("123l"));
-        Assert.assertFalse(tester.performTest("123456L"));
-        Assert.assertFalse(tester.performTest("0x123"));
-        Assert.assertFalse(tester.performTest("0xFF"));
-        Assert.assertFalse(tester.performTest("0x00"));
-        Assert.assertFalse(tester.performTest("abc"));
+        Verifier verifier = new DigitsVerifier();
+        Assert.assertFalse(verifier.perform("1a"));
+        Assert.assertFalse(verifier.perform("123l"));
+        Assert.assertFalse(verifier.perform("123456L"));
+        Assert.assertFalse(verifier.perform("0x123"));
+        Assert.assertFalse(verifier.perform("0xFF"));
+        Assert.assertFalse(verifier.perform("0x00"));
+        Assert.assertFalse(verifier.perform("abc"));
     }
 }

@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,18 +12,18 @@ public class MinLengthTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new MinLengthTester(5);
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("12345"));
-        Assert.assertTrue(tester.performTest("123456"));
-        Assert.assertTrue(tester.performTest("123456-----"));
+        Verifier verifier = new MinLengthVerifier(5);
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("12345"));
+        Assert.assertTrue(verifier.perform("123456"));
+        Assert.assertTrue(verifier.perform("123456-----"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new MinLengthTester(5);
-        Assert.assertFalse(tester.performTest("1234"));
-        Assert.assertFalse(tester.performTest("1"));
+        Verifier verifier = new MinLengthVerifier(5);
+        Assert.assertFalse(verifier.perform("1234"));
+        Assert.assertFalse(verifier.perform("1"));
     }
 }

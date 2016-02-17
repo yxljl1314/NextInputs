@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,21 +12,21 @@ public class BoolTestCase {
 
     @Test
     public void testTrue() throws Exception {
-        Tester tester = new BoolTester(true);
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("true"));
+        Verifier verifier = new BoolVerifier(true);
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("true"));
 
-        Assert.assertFalse(tester.performTest("trueHHH"));
+        Assert.assertFalse(verifier.perform("trueHHH"));
     }
 
     @Test
     public void testFalse() throws Exception {
-        Tester tester = new BoolTester(false);
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("false"));
+        Verifier verifier = new BoolVerifier(false);
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("false"));
 
-        Assert.assertFalse(tester.performTest("falseXXX"));
+        Assert.assertFalse(verifier.perform("falseXXX"));
     }
 }

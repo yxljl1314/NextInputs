@@ -1,17 +1,17 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 /**
  * 布尔值校验器
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class BoolTester extends EmptyableTester {
+public class BoolVerifier extends EmptyableVerifier {
 
     private final boolean mValue;
 
-    public BoolTester(boolean mBool) {
+    public BoolVerifier(boolean mBool) {
         this.mValue = mBool;
     }
 

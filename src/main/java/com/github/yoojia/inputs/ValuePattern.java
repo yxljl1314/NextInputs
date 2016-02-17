@@ -5,7 +5,7 @@ import com.github.yoojia.inputs.testers.*;
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class ValuesPattern {
+public class ValuePattern {
 
     public static final int PRIORITY_REQUIRED = StaticPattern.PRIORITY_REQUIRED;
     public static final int PRIORITY_GENERAL = StaticPattern.PRIORITY_GENERAL;
@@ -24,7 +24,7 @@ public class ValuesPattern {
      * @return Pattern
      */
     public static Pattern MinLength(final int min) {
-        return new Pattern(new MinLengthTester(min)).msg("输入内容长度必须不少于：" + min);
+        return new Pattern(new MinLengthVerifier(min)).msg("输入内容长度必须不少于：" + min);
     }
 
     /**
@@ -33,7 +33,7 @@ public class ValuesPattern {
      * @return Pattern
      */
     public static Pattern MaxLength(final int max) {
-        return new Pattern(new MinLengthTester(max)).msg("输入内容长度必须不多于：" + max);
+        return new Pattern(new MinLengthVerifier(max)).msg("输入内容长度必须不多于：" + max);
     }
 
     /**
@@ -43,7 +43,7 @@ public class ValuesPattern {
      * @return Pattern
      */
     public static Pattern RangeLength(final int min, final int max) {
-        return new Pattern(new RangeLengthTester(min, max)).msg("输入内容长度必须在[" + min + "," + max + "]之间");
+        return new Pattern(new RangeLengthVerifier(min, max)).msg("输入内容长度必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -160,11 +160,11 @@ public class ValuesPattern {
 
     /**
      * 输入内容与加载器的内容相同
-     * @param loader 加载器
+     * @param lazyLoader 加载器
      * @return Pattern
      */
-    public static Pattern EqualsTo(final Loader<String> loader){
-        return ABTest(new EqualsBridge(loader)).msg("输入内容与要求不一致");
+    public static Pattern EqualsTo(final LazyLoader<String> lazyLoader){
+        return ABTest(new EqualsBridge(lazyLoader)).msg("输入内容与要求不一致");
     }
 
     /**
@@ -173,7 +173,7 @@ public class ValuesPattern {
      * @return Pattern
      */
     public static Pattern EqualsTo(final String fixedValue) {
-        return EqualsTo(new Loader<String>() {
+        return EqualsTo(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return fixedValue;
@@ -183,11 +183,11 @@ public class ValuesPattern {
 
     /**
      * 输入内容必须与加载器的内容不相同
-     * @param loader 加载器
+     * @param lazyLoader 加载器
      * @return Pattern
      */
-    public static Pattern NotEquals(final Loader<String> loader){
-        return ABTest(new NotEqualsBridge(loader)).msg("输入内容不能与要求的相同");
+    public static Pattern NotEquals(final LazyLoader<String> lazyLoader){
+        return ABTest(new NotEqualsBridge(lazyLoader)).msg("输入内容不能与要求的相同");
     }
 
     /**
@@ -196,7 +196,7 @@ public class ValuesPattern {
      * @return Pattern
      */
     public static Pattern NotEquals(final String fixedValue) {
-        return NotEquals(new Loader<String>() {
+        return NotEquals(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return fixedValue;
@@ -205,13 +205,7 @@ public class ValuesPattern {
     }
 
     public static <T> Pattern ABTest(final ABBridge<T> bridge) {
-        return new Pattern(new EmptyableTester() {
-            @Override
-            public boolean performTestNotEmpty(String input) throws Exception {
-                final T value = bridge.stringToTyped(input);
-                return bridge.performTest(value, bridge.getValueA(), bridge.getValueB());
-            }
-        });
+        return new Pattern(new BridgeVerifier<>(bridge));
     }
 
 }

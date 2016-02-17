@@ -32,17 +32,17 @@ abstract class ValueBridge extends ABBridge<Double>{
     }
 
     @Override
-    protected Double getValueA() {
+    public Double getValueA() {
         return mValueA;
     }
 
     @Override
-    protected Double getValueB() {
+    public Double getValueB() {
         return mValueB;
     }
 
     @Override
-    protected Double stringToTyped(String input) {
+    public Double stringToTyped(String input) {
         return Double.valueOf(input);
     }
 

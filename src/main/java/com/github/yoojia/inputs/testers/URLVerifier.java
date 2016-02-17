@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import static com.github.yoojia.inputs.Texts.regexMatch;
 
@@ -9,7 +9,7 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class URLTester extends EmptyableTester {
+public class URLVerifier extends EmptyableVerifier {
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
         return regexMatch(notEmptyInput.toLowerCase(),

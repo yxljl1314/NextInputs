@@ -1,13 +1,13 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.EmptyableTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 /**
  * 数字校验器
  * @author Yoojia Chen (yoojia.chen@gmail.com)
  * @since 1.0
  */
-public class NumericTester extends EmptyableTester {
+public class NumericVerifier extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String input) throws Exception {

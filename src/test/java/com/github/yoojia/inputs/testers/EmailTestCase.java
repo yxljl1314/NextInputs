@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,38 +13,38 @@ public class EmailTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Tester tester = new EmailTester();
-        Assert.assertTrue(tester.performTest(null));
-        Assert.assertTrue(tester.performTest(""));
-        Assert.assertTrue(tester.performTest("email@domain.com"));
-        Assert.assertTrue(tester.performTest("firstname.lastname@domain.com"));
-        Assert.assertTrue(tester.performTest("email@subdomain.domain.com"));
-        Assert.assertTrue(tester.performTest("firstname+lastname@domain.com"));
-        Assert.assertTrue(tester.performTest("email@123.123.123.123"));
-        Assert.assertTrue(tester.performTest("1234567890@domain.com"));
-        Assert.assertTrue(tester.performTest("email@domain-one.com"));
-        Assert.assertTrue(tester.performTest("_______@domain.com"));
-        Assert.assertTrue(tester.performTest("email@domain.name"));
-        Assert.assertTrue(tester.performTest("email@domain.co.jp"));
-        Assert.assertTrue(tester.performTest("firstname-lastname@domain.com"));
+        Verifier verifier = new EmailVerifier();
+        Assert.assertTrue(verifier.perform(null));
+        Assert.assertTrue(verifier.perform(""));
+        Assert.assertTrue(verifier.perform("email@domain.com"));
+        Assert.assertTrue(verifier.perform("firstname.lastname@domain.com"));
+        Assert.assertTrue(verifier.perform("email@subdomain.domain.com"));
+        Assert.assertTrue(verifier.perform("firstname+lastname@domain.com"));
+        Assert.assertTrue(verifier.perform("email@123.123.123.123"));
+        Assert.assertTrue(verifier.perform("1234567890@domain.com"));
+        Assert.assertTrue(verifier.perform("email@domain-one.com"));
+        Assert.assertTrue(verifier.perform("_______@domain.com"));
+        Assert.assertTrue(verifier.perform("email@domain.name"));
+        Assert.assertTrue(verifier.perform("email@domain.co.jp"));
+        Assert.assertTrue(verifier.perform("firstname-lastname@domain.com"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Tester tester = new EmailTester();
-        Assert.assertFalse(tester.performTest("plainaddress"));
-        Assert.assertFalse(tester.performTest("#@%^%#$@#$@#.com"));
-        Assert.assertFalse(tester.performTest("@domain.com"));
-        Assert.assertFalse(tester.performTest("Joe Smith <email@domain.com>"));
-        Assert.assertFalse(tester.performTest("email.domain.com"));
-        Assert.assertFalse(tester.performTest("email@domain@domain.com"));
-        Assert.assertFalse(tester.performTest(".email@domain.com"));
-        Assert.assertFalse(tester.performTest("email.@domain.com"));
-        Assert.assertFalse(tester.performTest("email..email@domain.com"));
-        Assert.assertFalse(tester.performTest("あいうえお@domain.com"));
-        Assert.assertFalse(tester.performTest("email@domain.com (Joe Smith)"));
-        Assert.assertFalse(tester.performTest("email@domain"));
-        Assert.assertFalse(tester.performTest("email@-domain.com"));
-        Assert.assertFalse(tester.performTest("email@domain..com"));
+        Verifier verifier = new EmailVerifier();
+        Assert.assertFalse(verifier.perform("plainaddress"));
+        Assert.assertFalse(verifier.perform("#@%^%#$@#$@#.com"));
+        Assert.assertFalse(verifier.perform("@domain.com"));
+        Assert.assertFalse(verifier.perform("Joe Smith <email@domain.com>"));
+        Assert.assertFalse(verifier.perform("email.domain.com"));
+        Assert.assertFalse(verifier.perform("email@domain@domain.com"));
+        Assert.assertFalse(verifier.perform(".email@domain.com"));
+        Assert.assertFalse(verifier.perform("email.@domain.com"));
+        Assert.assertFalse(verifier.perform("email..email@domain.com"));
+        Assert.assertFalse(verifier.perform("あいうえお@domain.com"));
+        Assert.assertFalse(verifier.perform("email@domain.com (Joe Smith)"));
+        Assert.assertFalse(verifier.perform("email@domain"));
+        Assert.assertFalse(verifier.perform("email@-domain.com"));
+        Assert.assertFalse(verifier.perform("email@domain..com"));
     }
 }

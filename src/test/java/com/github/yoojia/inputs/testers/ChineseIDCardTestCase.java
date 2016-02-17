@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.testers;
 
-import com.github.yoojia.inputs.Tester;
+import com.github.yoojia.inputs.Verifier;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,30 +12,30 @@ import org.junit.Test;
  */
 public class ChineseIDCardTestCase {
 
-    private Tester mTester;
+    private Verifier mVerifier;
 
     @Before
     public void before(){
-        mTester = new IDCardTester();
+        mVerifier = new IDCardVerifier();
     }
 
     @Test
     public void testPassed() throws Exception {
-        Assert.assertTrue(mTester.performTest(""));
-        Assert.assertTrue(mTester.performTest("440901197709194316"));
-        Assert.assertTrue(mTester.performTest("440901197502198379"));
-        Assert.assertTrue(mTester.performTest("44090119840325427X"));
-        Assert.assertTrue(mTester.performTest("44090119840325427x"));
-        Assert.assertTrue(mTester.performTest("210303198412082729"));
+        Assert.assertTrue(mVerifier.perform(""));
+        Assert.assertTrue(mVerifier.perform("440901197709194316"));
+        Assert.assertTrue(mVerifier.perform("440901197502198379"));
+        Assert.assertTrue(mVerifier.perform("44090119840325427X"));
+        Assert.assertTrue(mVerifier.perform("44090119840325427x"));
+        Assert.assertTrue(mVerifier.perform("210303198412082729"));
     }
 
     @Test
     public void testFail() throws Exception {
-        Assert.assertFalse(mTester.performTest("abc"));
-        Assert.assertFalse(mTester.performTest("1234"));
-        Assert.assertFalse(mTester.performTest("+440901197709194316"));
-        Assert.assertFalse(mTester.performTest("H440901197502198379"));
-        Assert.assertFalse(mTester.performTest("A44090119840325427X"));
-        Assert.assertFalse(mTester.performTest("0440901199006249711"));
+        Assert.assertFalse(mVerifier.perform("abc"));
+        Assert.assertFalse(mVerifier.perform("1234"));
+        Assert.assertFalse(mVerifier.perform("+440901197709194316"));
+        Assert.assertFalse(mVerifier.perform("H440901197502198379"));
+        Assert.assertFalse(mVerifier.perform("A44090119840325427X"));
+        Assert.assertFalse(mVerifier.perform("0440901199006249711"));
     }
 }

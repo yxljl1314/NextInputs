@@ -17,18 +17,18 @@ abstract class ValueBridge extends ABBridge<Double>{
     }
 
     public ValueBridge(Float valueA, Float valueB) {
-        this.mValueA = valueA.doubleValue();
-        this.mValueB = valueB.doubleValue();
+        this.mValueA = valueA == null ? 0 : valueA.doubleValue();
+        this.mValueB = valueB == null ? 0 : valueB.doubleValue();
     }
 
     public ValueBridge(Long valueA, Long valueB) {
-        this.mValueA = valueA.doubleValue();
-        this.mValueB = valueB.doubleValue();
+        this.mValueA = valueA == null ? 0 : valueA.doubleValue();
+        this.mValueB = valueB == null ? 0 : valueB.doubleValue();
     }
 
     public ValueBridge(Integer valueA, Integer valueB) {
-        this.mValueA = valueA.doubleValue();
-        this.mValueB = valueB.doubleValue();
+        this.mValueA = valueA == null ? 0 : valueA.doubleValue();
+        this.mValueB = valueB == null ? 0 : valueB.doubleValue();
     }
 
     @Override

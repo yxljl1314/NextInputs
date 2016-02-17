@@ -31,6 +31,8 @@ public class EqualsTestCase {
             }
         });
         BridgeVerifier<String> verifier = new BridgeVerifier<>(bridge);
+        Assert.assertFalse(verifier.perform(null));
+        Assert.assertFalse(verifier.perform(""));
         Assert.assertFalse(verifier.perform("NextInputs-Java"));
     }
 }

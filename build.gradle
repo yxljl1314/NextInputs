@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'com.github.yoojia'
-version '1.0'
+version '1.1-beta'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -29,7 +29,7 @@ publishing {
             from components.java
             groupId 'com.github.yoojia'
             artifactId 'next-inputs'
-            version '1.0'
+            version '1.1-beta'
 
             artifact sourcesJar
             artifact javadocJar
@@ -66,9 +66,9 @@ bintray {
         labels = ['Java', 'Text Input', 'Validation']
         publicDownloadNumbers = true
         version {
-            name = '1.0'
-            desc = 'NextInputs library 1.0'
-            vcsTag = '1.0'
+            name = '1.1-beta'
+            desc = 'NextInputs library 1.1-beta'
+            vcsTag = '1.1-beta'
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }

@@ -1,15 +1,15 @@
 package com.github.yoojia.inputs;
 
 /**
- * Abstract interface for any Inputs
+ * Input是对所有需要被验证的输入数据源的抽象.
  *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 public interface Input {
 
     /**
-     * Load value from Inputs
+     * 从输入数据源中获取输入文本数据
      * @return String value
      */
-    String onLoadValue();
+    String getValue();
 }

@@ -3,13 +3,13 @@ package com.github.yoojia.inputs;
 import static com.github.yoojia.inputs.Texts.isEmpty;
 
 /**
- * Allow empty input Tester
+ * Allow empty input Verifier
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public abstract class AllowEmptyTester implements AbstractTester {
+public abstract class EmptyableVerifier implements Verifier {
 
     @Override
-    public final boolean performTest(String rawInput) throws Exception {
+    public final boolean perform(String rawInput) throws Exception {
         if (isEmpty(rawInput)) {
             return true;
         }

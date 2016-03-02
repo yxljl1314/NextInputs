@@ -1,15 +1,15 @@
 package com.github.yoojia.inputs.impl;
 
-import com.github.yoojia.inputs.AllowEmptyTester;
+import com.github.yoojia.inputs.EmptyableVerifier;
 
 import java.util.regex.Pattern;
 
 /**
- * BlankCard tester
- *
+ * 银行卡/信用卡号码校验器
  * @author 陈小锅 (yoojia.chen@gmail.com)
+ * @since  1.0
  */
-public class BlankCardTester extends AllowEmptyTester {
+public class BlankCardVerifier extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String input) {

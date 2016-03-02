@@ -41,11 +41,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.0`：
+当前最新版本为 `1.1-beta`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.0'
+    compile 'com.github.yoojia:next-inputs:1.1-beta'
 }
 ```
 
@@ -78,7 +78,7 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 注意：
 
-- Required的校验优先级默认为 `StaticPattern/ValuesPattern.PRIORITY_REQUIRED(-1024)`，其它优先级为 `StaticPattern/ValuesPattern.PRIORITY_GENERAL(0)`。
+- Required的校验优先级默认为 `StaticPattern/ValuePattern.PRIORITY_REQUIRED(-1024)`，其它优先级为 `StaticPattern/ValuePattern.PRIORITY_GENERAL(0)`。
 - 如果输入条目没有添加Required校验模式（或者NotBlank模式），在输入内容为空的情况下，校验结果是通过（Passed）的。
 
 ## NotBlank - 非空数据模式
@@ -133,7 +133,7 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 ----
 
-# ValuesPattern - 数值校验模式
+# ValuePattern - 数值校验模式
 
 `数值校验模式`需要指定校验参数来完成校验。
 NextInputs目前内置包含以下几种数值校验模式，在未来版本也会加入其它使用频率较高的模式：
@@ -145,47 +145,47 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 - MinValue - 最小值
 - MaxValue - 最大值
 - RangeValue - 数值范围
-- EqualsTo - 与指定内容相同
-- NotEqualsTo - 与指定内容不相同
+- Equals - 与指定内容相同
+- NotEquals - 与指定内容不相同
 
 ## Required -  必填项目
 
-`ValuesPattern.Required()`，与StaticPattern.Required相同。
+`ValuePattern.Required()`，与StaticPattern.Required相同。
 
 ## MinLength - 最小内容长度
 
-`ValuesPattern.MinLength(minLength)`，输入内容的长度至少（包括）为指定长度。
+`ValuePattern.MinLength(minLength)`，输入内容的长度至少（包括）为指定长度。
 
 ## MaxLength - 最多内容长度
 
-`ValuesPattern.MaxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
+`ValuePattern.MaxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
 
 ## RangeLength - 内容长度在指定范围内
 
-`ValuesPattern.RangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
+`ValuePattern.RangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
 
 ## MinValue - 最小值
 
-`ValuesPattern.MinValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValuePattern.MinValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 ## MaxValue - 最大值
 
-`ValuesPattern.MaxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValuePattern.MaxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 ## RangeValue - 数值范围
 
-`ValuesPattern.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
+`ValuePattern.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
 
-## EqualsTo - 与指定内容相同
+## Equals - 与指定内容相同
 
-`ValuesPattern.EqualsTo(...)`，输入内容与指定内容相同。EqualsTo有两个实现方式，一个是`EqualsTo(Loader<String>)`，另一个是`EqualsTo(fixedString)`；
+`ValuePattern.Equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
 
-- `EqualsTo(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`onLoadValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
-- `EqualsTo(fixedString)`，与指定固定字符串相同；
+- `Equals(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`getValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
+- `Equals(fixedString)`，与指定固定字符串相同；
 
-## NotEqualsTo - 与指定内容不相同
+## NotEquals - 与指定内容不相同
 
-方式与`ValuesPattern.EqualsTo`相同，判断方式取反。
+方式与`ValuePattern.Equals`相同，判断方式取反。
 
 ----
 
@@ -212,6 +212,27 @@ NextInputs对输入数据空值字符串的定义是：
 ```
 input == null || input.length() == 0
 ```
+----
+
+# 问题及交流
+
+QQ群: 66186035
+
+----
+
+# Change Log
+
+### 1.1
+
+- 更新各个校验模式的内部实现,分离其Tester；
+- ValuePattern 修改为 ValuePattern
+- ValuePattern.EqualsTo() 修改为 ValuePattern.Equals()；
+- ValuePattern.NotEqualsTo() 修改为 ValuePattern.NotEquals()；
+- ABTestBridge 更改为 ABBridge；
+- AbstractTester 更改为 Verifier；
+- Loader 更改为 LazyLoader；
+- AllowEmptyTester 更改为 EmptyableVerifier；
+- Loader 及 ABBridge 的onValue方法修改为 getValueX() 的形式；
 
 ----
 

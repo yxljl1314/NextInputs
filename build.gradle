@@ -8,19 +8,27 @@ plugins {
     id "com.jfrog.bintray" version "1.6"
 }
 
+ext{
+    publishVersion = '1.1-beta1'
+}
+
 group 'com.github.yoojia'
-version '1.0'
+version publishVersion
 
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 repositories {
     jcenter()
     mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 publishing {
@@ -29,7 +37,7 @@ publishing {
             from components.java
             groupId 'com.github.yoojia'
             artifactId 'next-inputs'
-            version '1.0'
+            version publishVersion
 
             artifact sourcesJar
             artifact javadocJar
@@ -37,7 +45,6 @@ publishing {
     }
 }
 
-// custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
@@ -66,9 +73,9 @@ bintray {
         labels = ['Java', 'Text Input', 'Validation']
         publicDownloadNumbers = true
         version {
-            name = '1.0'
-            desc = 'NextInputs library 1.0'
-            vcsTag = '1.0'
+            name = publishVersion
+            desc = 'NextInputs library ' + publishVersion
+            vcsTag = publishVersion
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }

@@ -41,11 +41,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.1-beta`：
+当前最新版本为 `1.2`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.1-beta'
+    compile 'com.github.yoojia:next-inputs:1.2'
 }
 ```
 

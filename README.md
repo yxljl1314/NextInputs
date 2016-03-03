@@ -41,11 +41,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.2`：
+当前最新版本为 `1.3`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.2'
+    compile 'com.github.yoojia:next-inputs:1.3'
 }
 ```
 
@@ -221,6 +221,10 @@ QQ群: 66186035
 ----
 
 # Change Log
+
+### 1.3
+
+- 增加流式API处理；
 
 ### 1.1
 

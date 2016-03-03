@@ -18,7 +18,7 @@ public class NextInputs {
         }
     };
 
-    private final ArrayList<VerifyMeta> mVerifyMetaArray = new ArrayList<>();
+    private final ArrayList<VerifierMeta> mVerifiers = new ArrayList<>();
 
     private MessageDisplay mMessageDisplay = new MessageDisplay() {
         @Override
@@ -37,17 +37,17 @@ public class NextInputs {
      * @return 校验测试结果是否成功
      */
     public boolean test(){
-        VerifyMeta testing = null;
+        VerifierMeta current = null;
         try{
-            for (VerifyMeta meta : mVerifyMetaArray) {
-                testing = meta;
+            for (VerifierMeta meta : mVerifiers) {
+                current = meta;
                 if ( ! performTest(meta) && mStopIfFail) {
                     return false;
                 }
             }
             return true;
         }catch (Throwable thr) {
-            mMessageDisplay.show(testing.input, thr.getMessage());
+            mMessageDisplay.show(current.input, thr.getMessage());
             return false;
         }
     }
@@ -63,7 +63,7 @@ public class NextInputs {
             throw new IllegalArgumentException("Patterns is required !");
         }
         Arrays.sort(patterns, ORDERING);
-        mVerifyMetaArray.add(new VerifyMeta(input, patterns));
+        mVerifiers.add(new VerifierMeta(input, patterns));
         return this;
     }
 
@@ -71,8 +71,9 @@ public class NextInputs {
      * 在校验测试遇到失败时，是否停止校验
      * @param stopOnFail 是否停止
      */
-    public void setStopIfFail(boolean stopOnFail){
+    public NextInputs setStopIfFail(boolean stopOnFail){
         mStopIfFail = stopOnFail;
+        return this;
     }
 
     /**
@@ -80,14 +81,24 @@ public class NextInputs {
      * @param display 消息显示接口。
      * @throws NullPointerException 当参数为Null时，抛出异常。
      */
-    public void setMessageDisplay(MessageDisplay display){
+    public NextInputs setMessageDisplay(MessageDisplay display){
         if (display == null) {
             throw new NullPointerException();
         }
         mMessageDisplay = display;
+        return this;
     }
 
-    private boolean performTest(VerifyMeta meta) throws Exception {
+    /**
+     * 流式API
+     * @param input Input对象
+     * @return 流式API接口
+     */
+    public Fluent on(Input input) {
+        return new Fluent(input, this);
+    }
+
+    private boolean performTest(VerifierMeta meta) throws Exception {
         final String value = meta.input.getValue();
         for (Pattern pattern : meta.patterns) {
             if ( ! pattern.mVerifier.perform(value)) {

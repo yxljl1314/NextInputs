@@ -24,7 +24,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MinLength(final int min) {
-        return new Pattern(new MinLengthVerifier(min)).msg("输入内容长度必须不少于：" + min);
+        return new Pattern(new MinLengthVerifier(min)).msg("输入内容至少" + min + "个字符");
     }
 
     /**
@@ -33,7 +33,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MaxLength(final int max) {
-        return new Pattern(new MinLengthVerifier(max)).msg("输入内容长度必须不多于：" + max);
+        return new Pattern(new MaxLengthVerifier(max)).msg("输入内容最多" + max + "个字符");
     }
 
     /**
@@ -43,7 +43,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern RangeLength(final int min, final int max) {
-        return new Pattern(new RangeLengthVerifier(min, max)).msg("输入内容长度必须在[" + min + "," + max + "]之间");
+        return new Pattern(new RangeLengthVerifier(min, max)).msg("输入内容字符数量必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -52,7 +52,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MinValue(final int min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
+        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -61,7 +61,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MinValue(final long min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
+        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -70,7 +70,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MinValue(final float min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
+        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -79,7 +79,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MinValue(final double min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值大小必须不小于：" + min);
+        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -88,7 +88,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MaxValue(final int max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
+        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -97,7 +97,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MaxValue(final long max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
+        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -106,7 +106,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MaxValue(final float max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
+        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -115,7 +115,7 @@ public class ValuePattern {
      * @return Pattern
      */
     public static Pattern MaxValue(final double max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值大小必须不大于：" + max);
+        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
     }
 
     /**
